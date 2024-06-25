@@ -8,6 +8,88 @@ app = Flask(__name__)
 def index():
     return render_template('index1.html')
 
+@app.route('/admin',methods=['GET','POST'])
+def admin():
+    
+    if request.method == "POST" :
+        nombre = request.form.get("fnombre")
+        descripcion = request.form.get("fdescripcion")
+        capacidad = request.form.get("fcapacidad")
+        precio = request.form.get("fprecio")
+        imagen = request.form.get("fimagen")
+
+        cabin_data = {
+            "nombre": nombre,
+            "descripcion": descripcion,
+            "capacidad": capacidad,
+            "precio": precio,
+            "imagen": imagen
+        }
+
+        response = requests.post('http://backend:5001/create_cabin', json=cabin_data)
+        
+    response = requests.get('http://backend:5001/cabins')
+
+    if response.status_code == 200:
+        cabins= response.json()
+        return render_template('admin.html', cabins=cabins)
+    else:
+        
+        return "Error al obtener los datos del backend"
+    
+
+    
+@app.route('/reservasadmin')
+def reservasadmin():
+
+    response = requests.get('http://backend:5001/reservas-admin')
+
+    if request.method == "POST" :
+        nombre = request.form.get("fnombre")
+        capacidad = request.form.get("fcapacidad")
+        entrada = request.form.get("fentrada")
+        salida = request.form.get("fsalida")
+
+        reserva_data = {
+            "nombre": nombre,
+            "cantidad_personas": capacidad,
+            "fecha_entrada": entrada,
+            "fecha_salida": salida
+        }
+
+        response = requests.post('http://backend:5001/reservas', json=reserva_data)
+
+    if response.status_code == 200:
+        reservas= response.json()
+        return render_template('reservas-admin.html', reservas=reservas)
+    else:
+        
+        return "Error al obtener los datos del backend"
+    
+
+@app.route('/admin/delete_cabin',methods=['GET','POST'])
+def admin_delete_cabin():
+    response = requests.get('http://backend:5001/cabins')
+
+    if request.method == "POST" :
+        id = request.form.get("fid")
+        
+        cabin_data = {
+            "id": id
+        }
+        
+        response = requests.delete('http://backend:5001/delete_cabin', json=cabin_data)
+        
+        
+    if response.status_code == 200:
+        cabins= response.json()
+        return render_template('admin-delete-cabin.html', cabins=cabins)
+    else:
+        
+        return "Error al obtener los datos del backend"
+
+
+
 @app.route('/cabins')
 def cabins():
 # Hacer la solicitud GET a la API del backend para obtener los datos

@@ -1,0 +1,53 @@
+{%extends 'base-admin.html'%}
+{%block head%}
+
+<link rel="stylesheet" href="{{ url_for('static',filename='/css/style-admin.css') }}">
+
+{%endblock%}
+{%block body%}
+<h1>Tabla Cabañas</h1>
+<h1>Tabla Cabañas</h1>
+<table class="table table table-bordered">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Descripcion</th>
+        <th scope="col">Capacidad</th>
+        <th scope="col">Precio</th>
+        <th scope="col">Imagen</th>
+      </tr>
+    </thead>
+    <tbody>
+
+    {% for cabin in cabins %}
+
+    <tr>
+        <th scope="row">{{ cabin.id }}</th>
+        <td>{{ cabin.nombre }}</td>
+        <td>{{ cabin.descripcion }}</td>
+        <td>{{ cabin.capacidad }}</td>
+        <td>{{ cabin.precio }}</td>
+        <td><img class="img-fluid custom-img-size" src="{{ cabin.imagen }}"></td>
+    </tr>
+    </tbody>
+
+    {% endfor %}
+
+  
+  </table>
+
+  <div class="container">
+    <div class="form-container">
+        <h2 class="text-center">Borrar Cabaña</h2>
+        <form action="{{ url_for('admin_delete_cabin') }}" method="post">
+            <div class="mb-3">
+                <label for="fid" class="form-label">ID de cabaña</label>
+                <input type="text" class="form-control" id="" name="fid">
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Submit</button>
+        </form>
+    </div>
+  </div>
+  
+{%endblock%}
