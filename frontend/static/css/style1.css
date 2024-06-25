@@ -1,0 +1,414 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.header {
+    background: linear-gradient(rgba(0, 0, 0, 0.7),
+            rgba(0, 0, 0, 0.7)),
+        url(/static/images/cab.jpg) center bottom no-repeat;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#personas {
+    -moz-appeareance: textfiel;
+    width: 80%;
+    margin: 0;
+}
+
+#personas::-webkit-outer-spin-button,
+#personas::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+header form .capacidad div {
+    background-color: white;
+    padding: 0;
+    border-radius: 0.375rem;
+}
+
+header form .capacidad div span {
+    margin: 0 10px 0 0;
+    font-size: 1.4rem
+}
+
+header form .capacidad div input {
+    border-color: transparent;
+}
+
+
+header form label {
+    color: white;
+    font-weight: bold;
+}
+
+header .button-reservar {
+    position: relative;
+    margin: 30px 0 0 0;
+    width: 30%;
+
+    /*background: linear-gradient(270deg, #9B290B, #041707);*/
+
+    background-color: #91652c;
+    border: none;
+    height: 55px;
+    border-radius: 8px;
+    color: white;
+    transition: all 1.3s ease;
+    font-weight: bold;
+}
+
+header .button-reservar:hover {
+    background-color: rgba(163, 121, 66, 1.0);
+    border-radius: 0;
+    transform: scale(1.1);
+}
+
+header .button-reservar::before,
+header .button-reservar::after {
+    content: '';
+    position: absolute;
+    top: 0px;
+    right: 0;
+    margin: auto;
+    height: 2px;
+    width: 0;
+    background: #4c2e06;
+    transition: 400ms ease all;
+}
+
+header .button-reservar::after {
+    right: inherit;
+    top: inherit;
+    left: 0;
+    bottom: 0;
+}
+
+header .button-reservar:hover::before,
+header .button-reservar:hover::after {
+    width: 100%;
+    transition: 800ms ease all;
+}
+
+header .button-reservar:active {
+    background: linear-gradient(135deg,
+            rgba(163, 121, 66, 0.6) 0%,
+            rgba(100, 127, 108, 0.6) 40%,
+            rgba(163, 121, 66, 0.6));
+}
+
+header .button-reservar:active::before,
+header .button-reservar:active::after {
+    transition: 300ms ease all;
+    background: rgba(76, 46, 6, 0.3);
+}
+
+
+#titulo_reservas {
+    min-height: 30vh;
+}
+
+
+.header-content {
+    text-align: center;
+}
+
+.header-content h1 {
+    font-size: 75px;
+    line-height: 80px;
+    color: #F9FAFC;
+    text-transform: uppercase;
+    margin-bottom: 35px;
+
+}
+
+.header-content p {
+    font-size: 16px;
+    color: #C5C5C5;
+    padding: 0 250px;
+    margin-bottom: 25px;
+}
+
+.btn-1 {
+    display: inline-block;
+    padding: 11px 35px;
+    background-color: #CE9678;
+    color: #F9FAFC;
+    text-transform: uppercase;
+
+}
+
+.btn-1:hover {
+    background-color: #ebad8d;
+}
+
+.cabaña {
+    padding: 100px 0;
+    background-color: #E1E2E6;
+    position: relative;
+}
+
+.cabaña-content {
+    text-align: center;
+}
+
+.cabaña-content h2 {
+    font-size: 55px;
+    line-height: 70px;
+    color: #323337;
+    text-transform: uppercase;
+    padding: 0 250px;
+    margin-bottom: 15px;
+}
+
+.txt-p {
+    font-size: 16px;
+    color: #414247;
+    padding: 0 250px;
+    margin-bottom: 35px;
+}
+
+.cabaña-group {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 50px;
+
+}
+
+.cabaña-1 {
+    padding: 0 25px;
+}
+
+.cabaña-1 img {
+    width: 200px;
+}
+
+.cabaña-img {
+    position: absolute;
+    top: 0;
+    right: 0;
+
+}
+
+.cabaña-1 h3 {
+    color: #323337;
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.services {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7),
+            rgba(0, 0, 0, 0.7)),
+        url(/static/images/Servicio.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    padding: 100px 0;
+
+}
+
+.services-content {
+    text-align: center;
+
+}
+
+.services-content h2 {
+    font-size: 55px;
+    line-height: 70px;
+    color: #F9FAFC;
+    text-transform: uppercase;
+    margin-bottom: 50px;
+
+}
+
+.services-content p {
+    font-size: 16px;
+    color: #C5C5C5;
+    margin-bottom: 50px;
+    padding: 0 100px;
+
+}
+
+.services-group {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 50px;
+}
+
+.services-1 {
+    padding: 0 100px;
+
+}
+
+.services-1 img {
+    width: 35px;
+    margin-bottom: 15px;
+
+}
+
+.services-1 h3 {
+    color: #EACCB3;
+    font-size: 18px;
+}
+
+.general {
+    display: flex;
+
+}
+
+.general-1 {
+    width: 50%;
+    padding: 100px 250px 100px 100px;
+    background-color: #E1E2E6;
+}
+
+.general-2 {
+    background-image: url(/static/images/Cabañam.jpeg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 50%;
+}
+
+.general-3 {
+    background-image: url(/static/images/CabañaP.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 50%;
+}
+
+.general-4 {
+    background-image: url("https://static.wixstatic.com/media/3ffa1d_35ac4f6b1fa245858e61e527bbc011b0~mv2.jpg/v1/fill/w_1199,h_800,al_c/3ffa1d_35ac4f6b1fa245858e61e527bbc011b0~mv2.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 50%;
+}
+
+h2 {
+    font-size: 55px;
+    line-height: 70px;
+    color: #323337;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+
+}
+
+p {
+    font-size: 16px;
+    color: #414247;
+    margin: 25px 0 45px 0;
+
+}
+
+.opinion {
+    padding: 100px 0;
+    text-align: center;
+
+}
+
+.opinion-content {
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.opinion-1 {
+    padding: 15px 55px;
+
+}
+
+.opinion-1 img {
+    width: 250px;
+    border-radius: 15px;
+    border-bottom: 15px;
+
+}
+
+.opinion-1 h3 {
+    font-size: 25px;
+    color: #323337;
+
+}
+
+.link h3 {
+    font-size: 18px;
+    color: #F9FAFC;
+    margin-bottom: 15px;
+
+}
+
+.link a {
+    font-size: 16px;
+    color: #C5C5C5;
+    display: block;
+    margin-bottom: 15px;
+
+
+}
+
+select.form-select {
+    display: flex;
+    width: 200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#titulo_selec {
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    width: 200px;
+    color: red;
+    font-size: large
+}
+
+section.cabaña#reservar {
+    height: 300px;
+    padding-top: 15px;
+}
+
+#calendario {
+    display: flex;
+    width: 200px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#titulo-campo {
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    width: 400px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.cabaña-1 img {
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+    padding-bottom: 10px;
+}
