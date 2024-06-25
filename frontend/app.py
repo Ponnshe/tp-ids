@@ -1,5 +1,5 @@
 # frontend/app.py
-from flask import Flask, render_template,request
+from flask import Flask, render_template,request, redirect, url_for
 import requests
 import urllib
 app = Flask(__name__)
@@ -67,27 +67,50 @@ def reservasadmin():
         return "Error al obtener los datos del backend"
     
 
-@app.route('/admin/delete_cabin',methods=['GET','POST'])
-def admin_delete_cabin():
-    response = requests.get('http://backend:5001/cabins')
-
-    if request.method == "POST" :
-        id = request.form.get("fid")
-        
+@app.route('/admin/delete_cabin/<int:id>',methods=['GET'])
+def admin_delete_cabin(id):
+    try:
         cabin_data = {
             "id": id
         }
-        
+            
         response = requests.delete('http://backend:5001/delete_cabin', json=cabin_data)
-        
-        
-    if response.status_code == 200:
-        cabins= response.json()
-        return render_template('admin-delete-cabin.html', cabins=cabins)
-    else:
-        
-        return "Error al obtener los datos del backend"
+            
+        if response.status_code == 200:
+            return redirect(url_for('admin'))  # Redirigir a la página de administración
+        else:
+            return f"Error al eliminar la cabaña. Código de error: {response.status_code}"
 
+    except Exception as e:
+        return f"Error en la solicitud al backend: {str(e)}", 500
+
+@app.route('/admin/update_cabin/<int:id>',methods=['GET', 'POST'])
+def admin_update_cabin(id):
+    if request.method == "GET":
+        response = requests.get(f'http://backend:5001/cabins/{id}')
+        if response.status_code == 200:
+            cabin = response.json()
+            return render_template('update_cabin.html', cabin=cabin)
+        else:
+            return "Error al obtener los datos del backend"
+
+    elif request.method == "POST":
+        try:
+            data = {
+                    "id": id,
+                    "nombre": request.form['nombre'],
+                    "capacidad": request.form['capacidad'],
+                    "descripcion": request.form['descripcion'],
+                    "precio": request.form['precio'],
+                    "imagen": request.form['imagen']
+                }
+            response = requests.put('http://backend:5001/update_cabin', json=data)
+            if response.status_code == 200:
+                return redirect(url_for('admin'))
+            else:
+                return f"Error al actualizar la cabaña. Código de error: {response.status_code}"
+        except Exception as e:
+                return f"Error en la solicitud al backend: {str(e)}", 500
 
 
 @app.route('/cabins')
