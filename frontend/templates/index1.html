@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="{{url_for('static',filename='/css/style1.css')}}">
 {% endblock %}
 
-    {% block header %}
+{% block body %} 
     <header class="header pt-5">
         <div class="header-content container" id="reserva-cliente">
             <h1>Refugio de los Andes</h1>
@@ -46,14 +46,11 @@
                             <button type="submit" class="button-reservar">Reservar</button>
                         </div>
                     </div>
-                </div>
-            </form>
-        </div>
-    </div>
-</header>
-    {% endblock %}
+		</form>
+	    </div>
+	</div>
+    </header>
 
-    {% block body %}
     <section class="cabaña">
         <img class="cabaña-img" src="/static/images/bg2.png" alt="">
         <div class="cabaña-content container">
@@ -155,9 +152,7 @@
     </section>
 
     <section class="general">
-
-        <div class="general-3"></div>
-
+      	<div class="general-3"></div>
         <div class="general-1">
             <h2>Cabaña Laguna</h2>
             <p>
@@ -200,30 +195,31 @@
             <div class="opinion-1">
                 <img src="/static/images/Susana.jpg" alt="">
                 <h3>Susana Scarpazza</h3>
-            <p>
-                Un lugar único, rodeado de un hermoso bosque, las cabañas muy completas, no falta nada, entorno
-                súper natural, cerca de supermercados y colectivos.
-                Sus dueños son súper atentos y siempre predispuestos ante cualquier necesidad, un lugar único.
-            </p>
-        </div>
-        <div class="opinion-1">
-            <img src="/static/images/Mati.jpg" alt="">
-            <h3>Matias Parusini</h3>
-            <p>
-                Excelente atención. Las cabañas amplias, limpias, con todo lo necesario para pasar unas vacaciones
-                hermosas. Muy completa la vajilla y los utensilios para cocinar.
-            </p>
-        </div>
-        <div class="opinion-1">
-            <img src="/static/images/Fede.jpg" alt="">
-            <h3>Federico Vargas</h3>
-            <p>
-                Muy lindas cabañas super equipadas con todo lo que uno necesita!
-                Ideal si buscas un lugar lejos del lío del centro con más contacto con la naturaleza...
-                La atención es super personalizada y cualquier inquietud o lo que necesites siempre estan para
-                atenderte! Sin duda volveriamos!.
-            </p>
-        </div>
-    </div>
-</section>
+		<p>
+		    Un lugar único, rodeado de un hermoso bosque, las cabañas muy completas, no falta nada, entorno
+		    súper natural, cerca de supermercados y colectivos.
+		    Sus dueños son súper atentos y siempre predispuestos ante cualquier necesidad, un lugar único.
+		</p>
+	    </div>
+	    <div class="opinion-1">
+		<img src="/static/images/Mati.jpg" alt="">
+		<h3>Matias Parusini</h3>
+		<p>
+		    Excelente atención. Las cabañas amplias, limpias, con todo lo necesario para pasar unas vacaciones
+		    hermosas. Muy completa la vajilla y los utensilios para cocinar.
+		</p>
+	    </div>
+	    <div class="opinion-1">
+		<img src="/static/images/Fede.jpg" alt="">
+		<h3>Federico Vargas</h3>
+		<p>
+		    Muy lindas cabañas super equipadas con todo lo que uno necesita!
+		    Ideal si buscas un lugar lejos del lío del centro con más contacto con la naturaleza...
+		    La atención es super personalizada y cualquier inquietud o lo que necesites siempre estan para
+		    atenderte! Sin duda volveriamos!.
+		</p>
+	    </div>
+	</div>
+    </section>
 {% endblock %}
+

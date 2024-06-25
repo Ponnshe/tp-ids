@@ -28,6 +28,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 50px;
 }
 
 #personas {
@@ -226,12 +227,10 @@ header .button-reservar:active::after {
     background-size: cover;
     background-attachment: fixed;
     padding: 100px 0;
-
 }
 
 .services-content {
     text-align: center;
-
 }
 
 .services-content h2 {
