@@ -1,0 +1,65 @@
+{%extends 'base.html'%}
+
+{%block head%}
+
+<title>DEV - Reservar Cabaña</title>
+<link rel=stylesheet href="{{url_for('static',filename='css/style1.css')}}">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+{%endblock%}
+
+{%block body%}
+<header class="header" id="titulo_reservas">
+    <div class="header-content container">
+        <h1>PAGINA DE RESERVAS</h1>
+        <a href="{{url_for('index')}}"><button class="btn-1">Volver a HOME</button></a>
+    </div>
+            
+</header>
+        
+<section class="cabaña" id="reservar">
+            
+    <label for="selec_cabana" id="titulo_selec">Seleccione su Cabaña:</label>
+    <select class="form-select" name="cabana" id="selec_cabana">
+        <option value="Cabana 1"> Cabaña 1</option>
+        <option value="Cabana 2">Cabaña 2</option>
+        <option value="Cabana 3">Cabaña 3</option>
+    </select>
+
+    <div>
+    LA CABAÑA SELECCIONADA ES LA <span style="color:blue;"><b>X</b></span>
+    </div>
+    <br>
+    <form>
+        <ul class="txt-p" id="campos">
+        <div class="row">
+            <label class="col-md-4 col">Nombre:  </label>
+            <input  type="text" name="fnombre" id="campo" placeholder="Escriba su nombre aquí" class="col-md-4 col form-control w-25">
+        </div>
+                    
+        <label id="titulo-campo">Apellido:
+        <input type="text" name="fapellido" id="campo" placeholder="Escriba su apellido aquí">
+        </label>
+                    
+        <label id="titulo-campo">Correo Electrónico: 
+        <input type="text" name="fmail" id="campo" placeholder="Escriba su correo aquí">
+        </label>
+                    
+        <label id="titulo-campo">Celular: 
+        <input type="text" name="fcelular" id="campo" placeholder="Escriba su número aquí">
+        </label>
+
+        <label id="titulo-campo">Direccion: 
+        <input type="text" name="fdirec" id="campo" placeholder="Escriba su direccion aquí">
+        </label>
+        </ul>
+                
+    </form>
+    </section>
+       
+ <label for="calendario" id="calendario">Fecha de Entrada:</label>
+<input type="date" id="calendario"  class="form-control"><br>
+<label for="calendario" id="calendario">Fecha de Salida:</label>
+<input type="date" id="calendario" class="form-control">
+{%endblock%}
