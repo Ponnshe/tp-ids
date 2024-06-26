@@ -6,8 +6,8 @@
 
 {% block body %}
 <section class="form_cabin container">
-    <div class="form-container mt-8">
-        <h2 class="text-center">Agregar Cabaña</h2>
+    <h2 class="text-center title">Agregar Cabaña</h2>
+    <div class="form-container">
         <form action="{{ url_for('admin_add_cabin') }}" method="post">
             <div class="mb-3">
                 <label for="nombre" class="form-label">Nombre</label>

@@ -16,7 +16,7 @@ const appendAlert = (message, type, url) => {
 document.querySelectorAll('.liveAlertBtn').forEach(button => {
   button.addEventListener('click', () => {
     var cabinName = button.getAttribute('data-nombre');
-    var url = button.getAttribute('data-url');
-    appendAlert(`Seguro desea eliminar la cabaña de nombre ${cabinName}?`, 'danger', url);
+    var url = button.getAttribute('data-url'); 
+    appendAlert(`¿Estás seguro que deseas eliminar la cabaña de nombre: "${cabinName}"?`, 'danger', url);
   });
 });
