@@ -1,0 +1,32 @@
+{%extends 'base.html'%}
+
+<head>
+    <title>Reservas</title>
+</head>
+
+{% block body %}
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Cabin ID</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Cantidad Personas</th>
+            <th scope="col">Fecha Ingreso</th>
+            <th scope="col">Fecha Salida</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for reserva in reservas %}
+        <tr>
+            <th scope="row">{{ reserva.id }}</th>
+            <td>{{ reserva.cabin_id }}</td>
+            <td>{{ reserva.nombre }}</td>
+            <td>{{ reserva.cantidad_personas }}</td>
+            <td>{{ reserva.fecha_ingreso.strftime('%Y-%m-%d') }}</td>
+            <td>{{ reserva.fecha_salida.strftime('%Y-%m-%d') }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

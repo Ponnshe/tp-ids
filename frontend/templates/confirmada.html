@@ -1,0 +1,12 @@
+{%extends 'base.html'%}
+{%block body%}
+<div class="text-center cabaña" id="check_div">
+    <img id="check"class="d-block mx-auto mb-4" src="{{url_for('static',filename='images/check.png')}}" alt="" width="72" height="72">
+    <h2>RESERVA CONFIRMADA</h2>
+    <p class="lead" id="formulario_reserva">Usted recibirá un mail de confirmación de reserva en la brevedad. 
+        A partir de ahí ese será el medio de comunicación para cualquier información. Muchas gracias por elegirnos!
+    </p>
+    <a href="{{url_for('index')}}"><button class="btn-1">Volver a HOME</button></a>
+  </div>
+
+{%endblock%}

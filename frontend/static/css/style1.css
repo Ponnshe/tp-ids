@@ -374,11 +374,17 @@ select.form-select {
     margin-left: auto;
     margin-right: auto;
 }
-
-#titulo_selec {
+#titulo_reservas{
+    height: 250px;
+}
+#formulario_reserva{
+    width: 900px;
     margin-left: auto;
     margin-right: auto;
-    display: flex;
+}
+
+#check{
+    height: 200px;
     width: 200px;
     color: red;
     font-size: large
@@ -397,13 +403,18 @@ section.cabaña#reservar {
     margin-right: auto;
 }
 
-#titulo-campo {
-    display: flex;
+#titulo_reservas{
+    padding-top: 30px;
+}
+
+#check_div{
+    padding-top: 10px;
+}
+
+#formulario_reserva{
+    width: 900px;
     margin-left: auto;
     margin-right: auto;
-    width: 400px;
-    align-items: center;
-    justify-content: space-between;
 }
 
 .cabaña-1 img {
@@ -411,4 +422,7 @@ section.cabaña#reservar {
     height: 200px;
     object-fit: cover;
     padding-bottom: 10px;
+}
+footer{
+    height: 300px;
 }

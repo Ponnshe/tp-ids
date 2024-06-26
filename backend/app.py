@@ -21,6 +21,10 @@ class Reservas(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     cabin_id = db.Column(db.Integer, db.ForeignKey('cabins.id'))
     nombre = db.Column(db.String(255), nullable=False)
+    apellido = db.Column(db.String(255), nullable=False)
+    documento = db.Column(db.String(255), nullable=False)
+    celular = db.Column(db.String(255), nullable=False)
+    email = db.Column(db.String(255), nullable=False)
     cantidad_personas = db.Column(db.Integer)
     fecha_ingreso = db.Column(db.Date)
     fecha_salida = db.Column(db.Date)
@@ -159,18 +163,68 @@ def update_cabin():
 
 @app.route('/reservas', methods=['POST'])
 def create_reserva():
-    data = request.get_json()
-    reserva = Reservas(cabin_id=data['cabin_id'], nombre=data['nombre'], cantidad_personas=data['cantidad_personas'], fecha_ingreso=data['fecha_ingreso'], fecha_salida=data['fecha_salida'])
+    cabin_id = request.form.get('cabin_id')
+    nombre = request.form.get('nombre')
+    apellido = request.form.get('apellido')
+    documento = request.form.get('documento')
+    celular = request.form.get('celular')
+    email = request.form.get('email')
+    cantidad_personas = request.form.get('cantidad_personas')
+    fecha_ingreso = request.form.get('fecha_ingreso')
+    fecha_salida = request.form.get('fecha_salida')
+
+    reserva = Reservas(
+        cabin_id=cabin_id,
+        nombre=nombre,
+        apellido=apellido,
+        documento=documento,
+        celular=celular,
+        email=email,
+        cantidad_personas=cantidad_personas,
+        fecha_ingreso=fecha_ingreso,
+        fecha_salida=fecha_salida
+    )
     db.session.add(reserva)
     db.session.commit()
     return jsonify({'message': 'Reserva created'}), 201
+
+@app.route('/reservas', methods=['GET'])
+def get_all_reservas():
+    reservas = Reservas.query.all()
+    results = []
+    for reserva in reservas:
+        result = {
+            'id': reserva.id,
+            'cabin_id': reserva.cabin_id,
+            'nombre': reserva.nombre,
+            'apellido': reserva.apellido,
+            'documento': reserva.documento,
+            'celular': reserva.celular,
+            'email': reserva.email,
+            'cantidad_personas': reserva.cantidad_personas,
+            'fecha_ingreso': str(reserva.fecha_ingreso),
+            'fecha_salida': str(reserva.fecha_salida)
+        }
+        results.append(result)
+    return jsonify(results)
 
 @app.route('/reservas/<int:id>', methods=['GET'])
 def get_reserva(id):
     reserva = Reservas.query.get(id)
     if reserva is None:
         return jsonify({'error': 'Reserva not found'}), 404
-    return jsonify({'id': reserva.id, 'cabin_id': reserva.cabin_id, 'nombre': reserva.nombre, 'cantidad_personas': reserva.cantidad_personas, 'fecha_ingreso': str(reserva.fecha_ingreso), 'fecha_salida': str(reserva.fecha_salida)})
+    return jsonify({
+        'id': reserva.id,
+        'cabin_id': reserva.cabin_id,
+        'nombre': reserva.nombre,
+        'apellido': reserva.apellido,
+        'documento': reserva.documento,
+        'celular': reserva.celular,
+        'email': reserva.email,
+        'cantidad_personas': reserva.cantidad_personas,
+        'fecha_ingreso': str(reserva.fecha_ingreso),
+        'fecha_salida': str(reserva.fecha_salida)
+    })
 
 @app.route('/reservas/<int:id>', methods=['PUT'])
 def update_reserva(id):
@@ -182,6 +236,14 @@ def update_reserva(id):
         reserva.cabin_id = data['cabin_id']
     if 'nombre' in data:
         reserva.nombre = data['nombre']
+    if 'apellido' in data:
+        reserva.apellido = data['apellido']
+    if 'documento' in data:
+        reserva.documento = data['documento']
+    if 'celular' in data:
+        reserva.celular = data['celular']
+    if 'email' in data:
+        reserva.email = data['email']
     if 'cantidad_personas' in data:
         reserva.cantidad_personas = data['cantidad_personas']
     if 'fecha_ingreso' in data:

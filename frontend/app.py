@@ -1,5 +1,5 @@
 # frontend/app.py
-from flask import Flask, render_template,request, redirect, url_for
+from flask import Flask, render_template,request,url_for
 import requests
 import urllib
 app = Flask(__name__)
@@ -135,14 +135,6 @@ def cabin(id):
     else:
         return "Error al obtener los datos del backend"
 
-
-@app.route('/reservar', methods=['GET'])
-def reservar():
-    data = request.args.get('data')
-    cabin_id = request.args.get('id')
-    data = eval(data)
-    return render_template('reservar.html', data=data, id=cabin_id)
-
 @app.route('/filtered_cabins', methods=['POST'])
 def filtered_cabins():
     fecha_entrada = request.form['fechaIngreso']
@@ -161,6 +153,36 @@ def filtered_cabins():
         "cantidad_personas":cantidad_personas
     }
     return render_template('filtered_cabins.html', filtered_cabins=filtered_cabins, data=data)
+
+@app.route('/reservar', methods=['GET', 'POST'])
+def reservar():
+    if request.method == 'POST':
+        data = request.form
+        response = requests.post('http://backend:5001/reservas', data=data)
+        if response.status_code == 200 or response.status_code == 201:
+            return render_template('confirmada.html')
+        else:
+            return "Error al hacer la reserva"
+    else:
+        data = request.args.get('data')
+        cabin_id = request.args.get('id')
+        response = requests.get(f'http://backend:5001/cabins/{cabin_id}')
+        if response.status_code != 200:
+            return "Error al hacer la reserva"
+        cabin = response.json()
+        if data:
+            data = eval(data)
+            return render_template('reservar.html', data=data, cabin=cabin)
+        return render_template('reservar.html')
+
+@app.route('/listar_reservas')
+def listar_reservas():
+    response = requests.get('http://backend:5001/reservas')
+    if response.status_code == 200:
+        reservas = response.json()
+        return render_template('lista_reservas.html', reservas=reservas)
+    else:
+        return "Error al obtener los datos del backend"
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0')
