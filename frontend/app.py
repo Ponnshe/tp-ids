@@ -108,7 +108,7 @@ def reservasadmin():
 
     if response.status_code == 200:
         reservas= response.json()
-        return render_template('reservas-admin.html', reservas=reservas)
+        return render_template('admin-reservas.html', reservas=reservas)
     else:
         
         return "Error al obtener los datos del backend"
