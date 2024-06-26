@@ -53,7 +53,7 @@ def admin_delete_cabin(id):
         if response.status_code == 200:
             return redirect(url_for('admin'))  # Redirigir a la página de administración
         else:
-            return f"Error al eliminar la cabaña. Código de error: {response.status_code}"
+            return f"Error al eliminar la cabaña. Código de error: {response.status_code}. Verifica que no existan reservas asociadas a esta cabaña."
 
     except Exception as e:
         return f"Error en la solicitud al backend: {str(e)}", 500
