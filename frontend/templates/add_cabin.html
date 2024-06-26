@@ -7,27 +7,27 @@
 {% block body %}
 <section class="form_cabin container">
     <div class="form-container mt-8">
-        <h2 class="text-center">Actualizar Cabaña</h2>
-        <form action="{{ url_for('admin_update_cabin', id=cabin.id) }}" method="post">
+        <h2 class="text-center">Agregar Cabaña</h2>
+        <form action="{{ url_for('admin_add_cabin') }}" method="post">
             <div class="mb-3">
                 <label for="nombre" class="form-label">Nombre</label>
-                <input type="text" class="form-control" id="nombre" name="nombre" value="{{ cabin.nombre }}">
+                <input type="text" class="form-control" id="nombre" name="nombre">
             </div>
             <div class="mb-3">
                 <label for="capacidad" class="form-label">Capacidad</label>
-                <input type="text" class="form-control" id="capacidad" name="capacidad" value="{{ cabin.capacidad }}">
+                <input type="text" class="form-control" id="capacidad" name="capacidad">
             </div>
             <div class="mb-3">
                 <label for="descripcion" class="form-label">Descripción</label>
-                <input type="text" class="form-control" id="descripcion" name="descripcion" value="{{ cabin.descripcion }}">
+                <input type="text" class="form-control" id="descripcion" name="descripcion">
             </div>
             <div class="mb-3">
                 <label for="precio" class="form-label">Precio</label>
-                <input type="text" class="form-control" id="precio" name="precio" value="{{ cabin.precio }}">
+                <input type="text" class="form-control" id="precio" name="precio">
             </div>
             <div class="mb-3">
                 <label for="imagen" class="form-label">Imagen</label>
-                <input type="text" class="form-control" id="imagen" name="imagen" value="{{ cabin.imagen }}">
+                <input type="text" class="form-control" id="imagen" name="imagen">
             </div>
             <button type="submit" class="btn btn-primary btn-block">Submit</button>
         </form>

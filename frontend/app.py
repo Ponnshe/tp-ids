@@ -8,26 +8,9 @@ app = Flask(__name__)
 def index():
     return render_template('index1.html')
 
+# Rutas para la administración de cabañas
 @app.route('/admin',methods=['GET','POST'])
 def admin():
-    
-    if request.method == "POST" :
-        nombre = request.form.get("fnombre")
-        descripcion = request.form.get("fdescripcion")
-        capacidad = request.form.get("fcapacidad")
-        precio = request.form.get("fprecio")
-        imagen = request.form.get("fimagen")
-
-        cabin_data = {
-            "nombre": nombre,
-            "descripcion": descripcion,
-            "capacidad": capacidad,
-            "precio": precio,
-            "imagen": imagen
-        }
-
-        response = requests.post('http://backend:5001/create_cabin', json=cabin_data)
-        
     response = requests.get('http://backend:5001/cabins')
 
     if response.status_code == 200:
@@ -36,36 +19,27 @@ def admin():
     else:
         
         return "Error al obtener los datos del backend"
-    
 
-    
-@app.route('/reservasadmin')
-def reservasadmin():
-
-    response = requests.get('http://backend:5001/reservas-admin')
-
-    if request.method == "POST" :
-        nombre = request.form.get("fnombre")
-        capacidad = request.form.get("fcapacidad")
-        entrada = request.form.get("fentrada")
-        salida = request.form.get("fsalida")
-
-        reserva_data = {
-            "nombre": nombre,
-            "cantidad_personas": capacidad,
-            "fecha_entrada": entrada,
-            "fecha_salida": salida
-        }
-
-        response = requests.post('http://backend:5001/reservas', json=reserva_data)
-
-    if response.status_code == 200:
-        reservas= response.json()
-        return render_template('reservas-admin.html', reservas=reservas)
-    else:
-        
-        return "Error al obtener los datos del backend"
-    
+@app.route('/admin/add_cabin',methods=['GET', 'POST'])       
+def admin_add_cabin():
+    if request.method == "GET":
+        return render_template('add_cabin.html')
+    elif request.method == "POST":
+        try:
+            data = {
+                "nombre": request.form['nombre'],
+                "capacidad": request.form['capacidad'],
+                "descripcion": request.form['descripcion'],
+                "precio": request.form['precio'],
+                "imagen": request.form['imagen']
+            }
+            response = requests.post('http://backend:5001/create_cabin', json=data)
+            if response.status_code == 200:
+                return redirect(url_for('admin'))
+            else:
+                return f"Error al agregar la cabaña. Código de error: {response.status_code}"
+        except Exception as e:
+            return f"Error en la solicitud al backend: {str(e)}", 500
 
 @app.route('/admin/delete_cabin/<int:id>',methods=['GET'])
 def admin_delete_cabin(id):
@@ -111,8 +85,34 @@ def admin_update_cabin(id):
                 return f"Error al actualizar la cabaña. Código de error: {response.status_code}"
         except Exception as e:
                 return f"Error en la solicitud al backend: {str(e)}", 500
+    
+@app.route('/reservasadmin')
+def reservasadmin():
 
+    response = requests.get('http://backend:5001/reservas-admin')
 
+    if request.method == "POST" :
+        nombre = request.form.get("fnombre")
+        capacidad = request.form.get("fcapacidad")
+        entrada = request.form.get("fentrada")
+        salida = request.form.get("fsalida")
+
+        reserva_data = {
+            "nombre": nombre,
+            "cantidad_personas": capacidad,
+            "fecha_entrada": entrada,
+            "fecha_salida": salida
+        }
+
+        response = requests.post('http://backend:5001/reservas', json=reserva_data)
+
+    if response.status_code == 200:
+        reservas= response.json()
+        return render_template('reservas-admin.html', reservas=reservas)
+    else:
+        
+        return "Error al obtener los datos del backend"
+    
 @app.route('/cabins')
 def cabins():
 # Hacer la solicitud GET a la API del backend para obtener los datos
