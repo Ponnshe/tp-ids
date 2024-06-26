@@ -1,6 +1,7 @@
 {% extends 'base-admin.html' %}
+{% block title %}Agregar Cabaña{% endblock %}
 {% block head %}
-<title>Actualizar Cabaña</title>
+
 <link rel="stylesheet" href="{{ url_for('static', filename='css/form_cabin.css') }}">
 {% endblock %}
 
@@ -29,7 +30,7 @@
                 <label for="imagen" class="form-label">Imagen</label>
                 <input type="text" class="form-control" id="imagen" name="imagen">
             </div>
-            <button type="submit" class="btn btn-primary btn-block">Submit</button>
+            <button type="submit" class="btn btn-primary btn-block">Agregar</button>
         </form>
     </div>
 </section>
