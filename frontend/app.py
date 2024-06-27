@@ -7,7 +7,17 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template('index1.html')
+    # Hacer la solicitud GET a la API del backend para obtener los datos
+    response = requests.get('http://backend:5001/cabins')
+    # Si la solicitud es exitosa, obtener los datos en formato JSON
+    if response.status_code == 200:
+        cabins= response.json()
+        # Renderizar la plantilla HTML con los datos obtenidos
+        return render_template('index1.html', cabins=cabins)
+    else:
+        # Si la solicitud falla, mostrar un mensaje de error
+        return "Error al obtener los datos del backend"
+    
 
 @app.route('/cabins')
 def cabins():

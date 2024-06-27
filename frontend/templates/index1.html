@@ -129,8 +129,18 @@
 </main>
 
 <section class="general" id="brief-info">
+    {% if cabins.1 %}
     <div class="general-1">
-        <h2>Cabaña Superior Marrón</h2>
+        <h2>{{ cabins.1.nombre }}</h2>
+        <p>
+            {{cabins.1.descripcion}}
+        </p>
+        <a href="#" class="btn-1">Informacion</a>
+    </div>
+    <div class="general-2" style="background-image: url({{cabins.1.imagen}});"></div>
+    {% else %}
+    <div class="general-1">
+        <h2>Cabaña Superior Marrón</h2>    
         <p>
             Nuestra cabaña más amplia. Tiene una amplio dormitorio secundario y un living comedor muy
             confortable y luminoso. Es de material y está revestida en madera y roca. Todos los ventanales y
@@ -143,11 +153,25 @@
         </p>
         <a href="#" class="btn-1">Informacion</a>
     </div>
-    <div class="general-2"></div>
+    <div class="general-2" style="background-image: url('{{ url_for('static', filename='images/Cabañam.jpeg') }}');"></div>
+    {% endif %}
 </section>
 
 <section class="general">
-    <div class="general-3"></div>
+
+    {% if cabins.2 %}
+    <div class="general-3" style="background-image: url('{{cabins.2.imagen}}');"></div>
+    <div class="general-1">
+        <h2>{{cabins.2.nombre}}</h2>
+        <p>
+            {{cabins.2.descripcion}}
+        </p>
+        <a href="#" class="btn-1">Informacion</a>
+    </div>
+
+    {%else%}
+
+    <div class="general-3" style="background-image: url('{{ url_for('static', filename='images/CabañaP.jpeg') }}');"" ></div>
     <div class="general-1">
         <h2>Cabaña Laguna</h2>
         <p>
@@ -162,9 +186,24 @@
         </p>
         <a href="#" class="btn-1">Informacion</a>
     </div>
+
+    {%endif%}
 </section>
 
 <section class="general">
+
+    {% if cabins.3 %}
+    <div class="general-1">
+        <h2>{{cabins.3.nombre}}</h2>
+        <p>
+            {{cabins.3.descripcion}}
+        </p>
+        <a href="#" class="btn-1">Informacion</a>
+    </div>
+    <div class="general-4" style="background-image: url('{{cabins.3.imagen}}');"></div>
+
+    {%else%}
+
     <div class="general-1">
         <h2>Cabaña Aurora Verde</h2>
         <p>
@@ -181,7 +220,10 @@
         </p>
         <a href="#" class="btn-1">Informacion</a>
     </div>
-    <div class="general-4"></div>
+    <div class="general-4" style="background-image: url('https://static.wixstatic.com/media/3ffa1d_35ac4f6b1fa245858e61e527bbc011b0~mv2
+    .jpg/v1/fill/w_1199,h_800,al_c/3ffa1d_35ac4f6b1fa245858e61e527bbc011b0~mv2.jpg');"></div>
+    {%endif%}
+
 </section>
 
 <section class="opinion container" id="reviews">
