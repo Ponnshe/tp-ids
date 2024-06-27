@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block head %}
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <title>Cabañas disponibles</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/album/">
+
+
+{%endblock%}
+
+{% block body %}
+<main>
+
+    <section class="py-0 text-center container">
+      <div class="row py-lg-5">
+        <div class="col-lg-6 col-md-8 mx-auto">
+          <h1 class="fw-light">Cabañas disponibles</h1>
+          <p class="lead text-body-secondary">Esta es la lista de cabañas disponibles.</p>
+          <p class="btn-paragraph d-flex justify-content-center align-items-center">
+            <a href="{{ url_for('index') }}" class="btn btn-primary my-2 d-flex justify-content-center align-items-center">Filtrar reserva</a>
+          </p>
+        </div>
+      </div>
+    </section>
+  
+    <div class="album py-5 bg-body-tertiary">
+      <div class="container">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+
+          {% for cabin in cabins %}
+          <div class="col">
+            <div class="card shadow-sm">
+              <img class="bd-placeholder-img card-img-top" src="{{ cabin.imagen }}" alt="Placeholder image" width="100%" height="225">
+              <div class="card-body">
+                <h5 class="card-title">{{ cabin.nombre }}</h5>
+                <p class="card-text">{{ cabin.descripcion }}</p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <a href="{{ url_for('reservar', data=data, id=cabin.id) }}"><button type="button" class="btn btn-sm btn-outline-secondary">Reservar</button></a>
+                  </div>
+                  <div class=" precio">
+                    <span class="badge text-bg-light">${{ cabin.precio|float|round|int }}</span>
+                  </div>
+                  <small class="text-body-secondary d-flex">{{ cabin.capacidad }}<i class="bi bi-person"></i></small>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+          
+        </div>
+      </div>
+    </div>
+  
+  </main>
+
+{%endblock%}
