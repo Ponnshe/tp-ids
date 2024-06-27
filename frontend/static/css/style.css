@@ -299,7 +299,6 @@ header .button-reservar:active::after {
 }
 
 .general-2 {
-    background-image: url(/static/images/Cabañam.jpeg);
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -307,7 +306,6 @@ header .button-reservar:active::after {
 }
 
 .general-3 {
-    background-image: url(/static/images/CabañaP.jpg);
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -315,7 +313,6 @@ header .button-reservar:active::after {
 }
 
 .general-4 {
-    background-image: url("https://static.wixstatic.com/media/3ffa1d_35ac4f6b1fa245858e61e527bbc011b0~mv2.jpg/v1/fill/w_1199,h_800,al_c/3ffa1d_35ac4f6b1fa245858e61e527bbc011b0~mv2.jpg");
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;

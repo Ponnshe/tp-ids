@@ -1,0 +1,55 @@
+{% extends 'base-admin.html' %}
+
+{% block title %}Editar reserva{% endblock %}
+
+{% block head %}
+<title>Editar reserva</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/form_cabin.css') }}">
+{% endblock %}
+
+{% block body %}
+<section class="form_cabin container">
+    <div class="form-container mt-8">
+        <h2 class="text-center title">Actualizar Datos de reserva de ID: {{reserva.id}}</h2>
+        <form action="{{ url_for('admin_update_reserva', id=reserva.id) }}" method="post">
+            <div class="mb-3">
+                <label for="cabin_id" class="form-label">ID de cabaña</label>
+                <input type="text" class="form-control" id="cabin_id" name="cabin_id" value="{{ reserva.cabin_id }}" readonly>
+            </div>
+            <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="nombre" name="nombre" value="{{ reserva.nombre }}">
+            </div>
+            <div class="mb-3">
+                <label for="apellido" class="form-label">Apellido</label>
+                <input type="text" class="form-control" id="apellido" name="apellido" value="{{ reserva.apellido }}">
+            </div>
+            <div class="mb-3">
+                <label for="documento" class="form-label">Documento</label>
+                <input type="text" class="form-control" id="documento" name="documento" value="{{ reserva.documento }}">
+            </div>
+            <div class="mb-3">
+                <label for="cantidad_personas" class="form-label">Cantidad de Personas</label>
+                <input type="number" class="form-control" id="cantidad_personas" name="cantidad_personas" value="{{ reserva.cantidad_personas }}">
+            </div>
+            <div class="mb-3">
+                <label for="celular" class="form-label">Celular</label>
+                <input type="text" class="form-control" id="celular" name="celular" value="{{ reserva.celular }}">
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" name="email" value="{{ reserva.email }}">
+            </div>
+            <div class="mb-3">
+                <label for="fecha_ingreso" class="form-label">Fecha de Ingreso</label>
+                <input type="date" class="form-control" id="fecha_ingreso" name="fecha_ingreso" value="{{ reserva.fecha_ingreso}}" readonly>
+            </div>
+            <div class="mb-3">
+                <label for="fecha_salida" class="form-label">Fecha de Salida</label>
+                <input type="date" class="form-control" id="fecha_salida" name="fecha_salida" value="{{ reserva.fecha_salida}}" readonly>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Guardar</button>
+        </form>
+    </div>
+</section>
+{% endblock %}

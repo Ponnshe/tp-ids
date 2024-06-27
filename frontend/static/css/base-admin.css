@@ -1,0 +1,85 @@
+/* Scrollbar para Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #3498DB #2C3E50;
+}
+
+.title{
+    color: #FFFFFF;
+    margin-top: 20px;
+}
+
+/* Scrollbar para WebKit */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+/* Track para WebKit */
+::-webkit-scrollbar-track {
+  background: #2C3E50;
+}
+
+/* Handle para WebKit */
+::-webkit-scrollbar-thumb {
+  background: #3498DB;
+  border-radius: 6px;
+}
+
+/* Handle al pasar el mouse para WebKit */
+::-webkit-scrollbar-thumb:hover {
+  background: #1ABC9C;
+}
+
+/* Estilos generales */
+body {
+  background: linear-gradient(180deg, rgba(13, 27, 37, 1) 0%, rgba(22, 39, 49, 1) 33%, rgba(32, 49, 59, 1) 66%, rgba(40, 71, 97, 1) 100%);
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  color: #ECF0F1;
+  background-attachment: fixed; /* Fijar el fondo para que no se repita */
+}
+
+
+/*Estilos del navbar*/
+nav{
+    background-color:#281f3f;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.26);
+    color: #FFFFFF;
+    padding: 20px;
+    text-align: center;
+}
+
+.nav-item a {
+  color: #FFFFFF;
+  text-decoration: none;
+  padding: 10px 20px;
+  display: inline-block;
+  margin: 0 40px;
+}
+
+.nav-item a:hover {
+  color: #1ABC9C;
+}
+
+.navbar-toggler {
+    border: var(--bs-border-width) solid #FFFFFF !important;
+}
+
+.navbar-toggler-iconP i{
+  color: #FFFFFF;
+  transition: transform 0.2s;
+}
+
+.navbar-toggler:hover {
+  border-color: #1ABC9C !important;
+}
+.navbar-toggler:hover .navbar-toggler-iconP i{
+  color: #1ABC9C;
+}
+.navbar-toggler:focus {
+    text-decoration: none;
+    outline: 0;
+    box-shadow: none;
+}
+

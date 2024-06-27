@@ -1,0 +1,47 @@
+{%extends 'base-admin.html'%}
+
+{%block title%}Panel de Administración de Cabañas{%endblock%}
+
+{%block head%}
+<link rel="stylesheet" href="{{ url_for('static',filename='/css/style-admin.css') }}">
+{%endblock%}
+
+{%block body%}
+<section class="title d-flex justify-content-center align-items-center container-fluid flex-column">
+    <h1 class="title">Panel de Administración de Cabañas</h1>
+</section>
+
+<section class="alert container-fluid d-flex justify-content-center align-items-center">
+    <div id="liveAlertPlaceholder"></div>
+</section>
+
+<section class="cabinsTable container">
+    <div class="row row-cols-1 row-cols-lg-3 g-4">
+	{% for cabin in cabins %}
+          <div class="col">
+            <div class="card shadow-sm">
+              <img class="bd-placeholder-img card-img-top" src="{{ cabin.imagen }}" alt="Placeholder image" width="100%" height="225">
+              <div class="card-body">
+                <h5 class="card-title">{{ cabin.nombre }}</h5>
+                <p class="card-text">{{ cabin.descripcion }}</p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+<button type="button" class="liveAlertBtn btn btn-sm btn-danger ml-2" id="liveAlertBtn" data-nombre="{{ cabin.nombre }}" data-url="{{ url_for('admin_delete_cabin', id=cabin.id )}}">Eliminar</button>
+                    <a href="{{ url_for('admin_update_cabin', id=cabin.id) }}"><button type="button" class="btn btn-sm btn-success ms-2">Editar</button></a>
+                  </div>
+                  <div class=" precio">
+                    <span class="badge text-bg-light">${{ cabin.precio|float|round|int }}</span>
+                  </div>
+                  <small class="text-body-secondary d-flex">{{ cabin.capacidad }}<i class="bi bi-person"></i></small>
+                </div>
+              </div>
+            </div>
+          </div>
+	{% endfor %}
+    </div>
+</section>
+
+
+<script src="{{ url_for('static', filename='/js/admin.js') }}"></script>
+  
+{%endblock%}
