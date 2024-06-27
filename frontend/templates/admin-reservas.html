@@ -1,7 +1,9 @@
 {%extends 'base-admin.html'%}
+
 {%block head%}
 <link rel="stylesheet" href="{{ url_for('static',filename='/css/style-admin.css') }}">
 {%endblock%}
+
 {%block body%}
 <table class="table table-hover">
     <thead>
@@ -41,5 +43,4 @@
     </tbody>
 </table>
 <script src="{{ url_for('static', filename='/js/admin-reservas.js') }}"></script>
-
 {%endblock%}
