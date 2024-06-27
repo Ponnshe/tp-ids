@@ -5,38 +5,31 @@
 {% block styles %}
 <link rel="stylesheet" href="{{ url_for('static',filename='/css/styleFilteredCabins.css') }}">
 <link rel="stylesheet" href="{{ url_for('static',filename='/css/buscar-reserva.css') }}">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css">
-<!-- Favicons -->
-<link rel="apple-touch-icon" href="https://getbootstrap.com/docs/5.3/assets/img/favicons/apple-touch-icon.png"
-    sizes="180x180">
-<link rel="manifest" href="https://getbootstrap.com/docs/5.3/assets/img/favicons/manifest.json">
-<link rel="mask-icon" href="https://getbootstrap.com/docs/5.3/assets/img/favicons/safari-pinned-tab.svg"
-    color="#712cf9">
 {% endblock %}
 
 {% block body %}
 <div class="container mt-5">
-        <h1 class="text-center">Buscar Reserva</h1>
-        <form method="POST" action="{{ url_for('buscar_reserva') }}">
-            <div class="row">
-                <div class="col-md-4">
-                    <label for="nombre" class="form-label">Nombre</label>
-                    <input type="text" class="form-control" id="nombre" name="nombre" required>
-                </div>
-                <div class="col-md-4">
-                    <label for="apellido" class="form-label">Apellido</label>
-                    <input type="text" class="form-control" id="apellido" name="apellido" required>
-                </div>
-                <div class="col-md-4">
-                    <label for="documento" class="form-label">Documento</label>
-                    <input type="text" class="form-control" id="documento" name="documento" required>
-                </div>
-            </div>
-            <div class="w-100 d-flex justify-content-center align-items-center button mt-3">
-                <button type="submit" class="btn btn-primary my-2 d-flex justify-content-center align-items-center">
-                    Buscar
-                </button>
-            </div>
-        </form>
-    </div>
+    <h1 class="text-center">Buscar Reserva</h1>
+    <form method="POST" action="{{ url_for('buscar_reserva') }}">
+	<div class="row">
+	    <div class="col-md-4">
+		<label for="nombre" class="form-label">Nombre</label>
+		<input type="text" class="form-control" id="nombre" name="nombre" required>
+	    </div>
+	    <div class="col-md-4">
+		<label for="apellido" class="form-label">Apellido</label>
+		<input type="text" class="form-control" id="apellido" name="apellido" required>
+	    </div>
+	    <div class="col-md-4">
+		<label for="documento" class="form-label">Documento</label>
+		<input type="text" class="form-control" id="documento" name="documento" required>
+	    </div>
+	</div>
+	<div class="w-100 d-flex justify-content-center align-items-center button mt-3">
+	    <button type="submit" class="btn btn-primary my-2 d-flex justify-content-center align-items-center">
+		Buscar
+	    </button>
+	</div>
+    </form>
+</div>
 {% endblock %}
