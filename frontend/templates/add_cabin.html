@@ -1,0 +1,37 @@
+{% extends 'base-admin.html' %}
+{% block title %}Agregar Cabaña{% endblock %}
+{% block head %}
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/form_cabin.css') }}">
+{% endblock %}
+
+{% block body %}
+<section class="form_cabin container">
+    <h2 class="text-center title">Agregar Cabaña</h2>
+    <div class="form-container">
+        <form action="{{ url_for('admin_add_cabin') }}" method="post">
+            <div class="mb-3">
+                <label for="nombre" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="nombre" name="nombre">
+            </div>
+            <div class="mb-3">
+                <label for="capacidad" class="form-label">Capacidad</label>
+                <input type="text" class="form-control" id="capacidad" name="capacidad">
+            </div>
+            <div class="mb-3">
+                <label for="descripcion" class="form-label">Descripción</label>
+                <input type="text" class="form-control" id="descripcion" name="descripcion">
+            </div>
+            <div class="mb-3">
+                <label for="precio" class="form-label">Precio</label>
+                <input type="text" class="form-control" id="precio" name="precio">
+            </div>
+            <div class="mb-3">
+                <label for="imagen" class="form-label">Imagen</label>
+                <input type="text" class="form-control" id="imagen" name="imagen">
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Agregar</button>
+        </form>
+    </div>
+</section>
+{% endblock %}

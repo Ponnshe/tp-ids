@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 import os
 from datetime import datetime
@@ -314,5 +314,32 @@ def filter_search():
     ]
 
     return jsonify(resultado), 200  
+
+@app.route('/reservas-admin')
+def reservasadmin():
+
+    query = Reservas.query
+
+
+    reservas = query.all()
+
+    results = []
+    for reserva in reservas:
+        result = {
+            'id': reserva.id,
+            'nombre': reserva.nombre,
+            'apellido': reserva.apellido,
+            'documento': reserva.documento,
+            'celular': reserva.celular,
+            'email': reserva.email,
+            'cantidad_personas': reserva.cantidad_personas,
+            'fecha_ingreso': reserva.fecha_ingreso,
+            'fecha_salida': reserva.fecha_salida,
+            'cabin_id': reserva.cabin_id
+        }
+        results.append(result)
+    return jsonify(results)
+
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5001)
