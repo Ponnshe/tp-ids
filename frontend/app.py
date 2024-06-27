@@ -130,111 +130,105 @@ def admin_update_cabin(id):
     
 @app.route('/reservasadmin')
 def reservasadmin():
+    if 'username' in session:
+        response = requests.get('http://backend:5001/reservas-admin')
+        if response.status_code == 200:
+            reservas= response.json()
+            return render_template('admin-reservas.html', reservas=reservas)
+        else:
+            
+            return "Error al obtener los datos del backend"
+    return redirect(url_for('login'))
 
-    response = requests.get('http://backend:5001/reservas-admin')
 
-    if request.method == "POST" :
-        nombre = request.form.get("fnombre")
-        capacidad = request.form.get("fcapacidad")
-        entrada = request.form.get("fentrada")
-        salida = request.form.get("fsalida")
-
-        reserva_data = {
-            "nombre": nombre,
-            "cantidad_personas": capacidad,
-            "fecha_entrada": entrada,
-            "fecha_salida": salida
-        }
-
-        response = requests.post('http://backend:5001/reservas', json=reserva_data)
-
-    if response.status_code == 200:
-        reservas= response.json()
-        return render_template('admin-reservas.html', reservas=reservas)
-    else:
-        
-        return "Error al obtener los datos del backend"
     
 @app.route('/admin/delete_reserva/<int:id>',methods=['GET'])
 def admin_delete_reserva(id):
-    try:
-        reserva_data = {
-            "id": id
-        }
-            
-        response = requests.delete(f'http://backend:5001/reservas/{id}')
-            
-        if response.status_code == 200:
-            return redirect(url_for('reservasadmin'))
-        else:
-            return f"Error al eliminar la reserva. Código de error: {response.status_code}."
+    if 'username' in session:
+        try:
+            reserva_data = {
+                "id": id
+            }
+                
+            response = requests.delete(f'http://backend:5001/reservas/{id}')
+                
+            if response.status_code == 200:
+                return redirect(url_for('reservasadmin'))
+            else:
+                return f"Error al eliminar la reserva. Código de error: {response.status_code}."
 
-    except Exception as e:
-        return f"Error en la solicitud al backend: {str(e)}", 500
+        except Exception as e:
+            return f"Error en la solicitud al backend: {str(e)}", 500
+    return redirect(url_for('login'))
 
 @app.route('/admin/update_reserva/<int:id>',methods=['GET', 'POST'])
 def admin_update_reserva(id):
-    if request.method == "GET":
-        response = requests.get(f'http://backend:5001/reservas/{id}')
-        if response.status_code == 200:
-            reserva = response.json()
-            return render_template('update_reserva.html', reserva=reserva)
-        else:
-            return "Error al obtener los datos del backend"
-
-    elif request.method == "POST":
-        try:
-            data = {
-                "id": id,
-                "nombre": request.form['nombre'],
-                "apellido": request.form['apellido'],
-                "documento": request.form['documento'],
-                "celular": request.form['celular'],
-                "email": request.form['email'],
-                "cantidad_personas": request.form['cantidad_personas'],
-                "fecha_ingreso": request.form['fecha_ingreso'],
-                "fecha_salida": request.form['fecha_salida'],
-                "cabin_id": request.form['cabin_id']
-            }
-            response = requests.put(f'http://backend:5001/reservas/{id}', json=data)
+    if 'username' in session:
+        if request.method == "GET":
+            response = requests.get(f'http://backend:5001/reservas/{id}')
             if response.status_code == 200:
-                return redirect(url_for('reservasadmin'))
+                reserva = response.json()
+                return render_template('update_reserva.html', reserva=reserva)
             else:
-                return f"Error al actualizar la reserva. Código de error: {response.status_code}"
-        except Exception as e:
-                return f"Error en la solicitud al backend: {str(e)}", 500
+                return "Error al obtener los datos del backend"
+
+        elif request.method == "POST":
+            try:
+                data = {
+                    "id": id,
+                    "nombre": request.form['nombre'],
+                    "apellido": request.form['apellido'],
+                    "documento": request.form['documento'],
+                    "celular": request.form['celular'],
+                    "email": request.form['email'],
+                    "cantidad_personas": request.form['cantidad_personas'],
+                    "fecha_ingreso": request.form['fecha_ingreso'],
+                    "fecha_salida": request.form['fecha_salida'],
+                    "cabin_id": request.form['cabin_id']
+                }
+                response = requests.put(f'http://backend:5001/reservas/{id}', json=data)
+                if response.status_code == 200:
+                    return redirect(url_for('reservasadmin'))
+                else:
+                    return f"Error al actualizar la reserva. Código de error: {response.status_code}"
+            except Exception as e:
+                    return f"Error en la solicitud al backend: {str(e)}", 500
+    return redirect(url_for('login'))
+
             
 @app.route('/admin/detalle_reserva/<int:id>',methods=['GET', 'POST'])
 def admin_detalle_reserva(id):
-    if request.method == "GET":
-        response = requests.get(f'http://backend:5001/reservas/{id}')
-        if response.status_code == 200:
-            reserva = response.json()
-            return render_template('detalle_reserva.html', reserva=reserva)
-        else:
-            return "Error al obtener los datos del backend"
-
-    elif request.method == "POST":
-        try:
-            data = {
-                "id": id,
-                "nombre": request.form['nombre'],
-                "apellido": request.form['apellido'],
-                "documento": request.form['documento'],
-                "celular": request.form['celular'],
-                "email": request.form['email'],
-                "cantidad_personas": request.form['cantidad_personas'],
-                "fecha_ingreso": request.form['fecha_ingreso'],
-                "fecha_salida": request.form['fecha_salida'],
-                "cabin_id": request.form['cabin_id']
-            }
-            response = requests.put(f'http://backend:5001/reservas/{id}', json=data)
+    if 'username' in session:
+        if request.method == "GET":
+            response = requests.get(f'http://backend:5001/reservas/{id}')
             if response.status_code == 200:
-                return redirect(url_for('reservasadmin'))
+                reserva = response.json()
+                return render_template('detalle_reserva.html', reserva=reserva)
             else:
-                return f"Error al actualizar la reserva. Código de error: {response.status_code}"
-        except Exception as e:
-                return f"Error en la solicitud al backend: {str(e)}", 500  
+                return "Error al obtener los datos del backend"
+
+        elif request.method == "POST":
+            try:
+                data = {
+                    "id": id,
+                    "nombre": request.form['nombre'],
+                    "apellido": request.form['apellido'],
+                    "documento": request.form['documento'],
+                    "celular": request.form['celular'],
+                    "email": request.form['email'],
+                    "cantidad_personas": request.form['cantidad_personas'],
+                    "fecha_ingreso": request.form['fecha_ingreso'],
+                    "fecha_salida": request.form['fecha_salida'],
+                    "cabin_id": request.form['cabin_id']
+                }
+                response = requests.put(f'http://backend:5001/reservas/{id}', json=data)
+                if response.status_code == 200:
+                    return redirect(url_for('reservasadmin'))
+                else:
+                    return f"Error al actualizar la reserva. Código de error: {response.status_code}"
+            except Exception as e:
+                    return f"Error en la solicitud al backend: {str(e)}", 500  
+    return redirect(url_for('login'))
 @app.route('/cabins')
 def cabins():
 # Hacer la solicitud GET a la API del backend para obtener los datos
