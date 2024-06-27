@@ -296,14 +296,29 @@ def reservar():
             return render_template('reservar.html', data=data, cabin=cabin, precioTotal=precioTotal, noches=noches)
         return render_template('reservar.html')
 
-@app.route('/listar_reservas')
-def listar_reservas():
-    response = requests.get('http://backend:5001/reservas')
-    if response.status_code == 200:
-        reservas = response.json()
-        return render_template('lista_reservas.html', reservas=reservas)
-    else:
-        return "Error al obtener los datos del backend"
+@app.route('/buscar_reserva', methods=['GET', 'POST'])
+def buscar_reserva():
+    if request.method == 'POST':
+        nombre = request.form['nombre']
+        apellido = request.form['apellido']
+        documento = request.form['documento']
+        return redirect(url_for('listar_reserva', nombre=nombre, apellido=apellido, documento=documento))
+    return render_template('buscar-reserva.html')
+
+@app.route('/listar_reserva')
+def listar_reserva():
+    nombre = request.args.get('nombre')
+    apellido = request.args.get('apellido')
+    documento = request.args.get('documento')
+    try:
+        response = requests.get(f'http://backend:5001/buscar_reserva/{nombre}/{apellido}/{documento}')
+        if response.status_code == 200:
+            reserva = response.json()
+            return render_template('listar-reserva.html', reserva=reserva)
+        else:
+            return "Error al obtener los datos del backend"
+    except requests.exceptions.RequestException as e:
+        return f"Error de conexión: {e}"
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0')

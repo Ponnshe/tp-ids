@@ -235,6 +235,26 @@ def get_reserva(id):
         'fecha_salida': str(reserva.fecha_salida)
     })
 
+@app.route('/buscar_reserva/<string:nombre>/<string:apellido>/<string:documento>', methods=['GET'])
+def buscar_reserva(nombre, apellido, documento):
+    reserva = Reservas.query.filter_by(nombre=nombre, apellido=apellido, documento=documento).first()
+    if reserva:
+        reserva_data = {
+            'id': reserva.id,
+            'cabin_id': reserva.cabin_id,
+            'nombre': reserva.nombre,
+            'apellido': reserva.apellido,
+            'documento': reserva.documento,
+            'celular': reserva.celular,
+            'email': reserva.email,
+            'cantidad_personas': reserva.cantidad_personas,
+            'fecha_ingreso': reserva.fecha_ingreso.isoformat() if reserva.fecha_ingreso else None,
+            'fecha_salida': reserva.fecha_salida.isoformat() if reserva.fecha_salida else None
+        }
+        return jsonify(reserva_data)
+    else:
+        return jsonify({'message': 'Reserva no encontrada'})
+
 @app.route('/reservas/<int:id>', methods=['PUT'])
 def update_reserva(id):
     data = request.get_json()
