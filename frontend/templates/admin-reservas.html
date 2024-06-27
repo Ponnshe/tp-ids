@@ -7,29 +7,39 @@
     <thead>
         <tr>
             <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
+            <th scope="col">ID de Cabaña</th>
+            <th scope="col">Apellido, Nombre</th>
+            <th scope="col">Documento</th>
+            <th scope="col">Fecha de entrada</th>
+            <th scope="col">Fecha de salida</th>
+            <th scope="col">Opciones</th>
         </tr>
     </thead>
     <tbody>
+        {% for reserva in reservas %}
         <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
+            <th scope="row">{{ reserva.id }}</th>
+            <td>{{ reserva.cabin_id }}</td>
+            <td>{{ reserva.apellido }}, {{ reserva.nombre }}</td>
+            <td>{{ reserva.documento }}</td>
+            <td>{{ reserva.fecha_ingreso }}</td>
+            <td>{{ reserva.fecha_salida }}</td>
+            <td><div class="container text-center">
+                <div class="row">
+                    <div class="btn-group" role="group">
+                        <button type="button" class="liveAlertBtn btn btn-danger" id="liveAlertBtn" reserva-id="{{reserva.id}}"data-url="{{ url_for('admin_delete_reserva', id=reserva.id )}}">Eliminar</button>
+                        <a href="{{url_for('admin_update_reserva', id=reserva.id)}}"><button type="button" class="btn btn-warning">Editar</button></a>
+                        <a href="{{url_for('admin_detalle_reserva', id=reserva.id)}}"><button type="button" class="btn btn-success">Detalle</button></a>
+                    </div>
+                </div>
+                <div class="row" id="liveAlertPlaceholder">
+                </div>
+                </div>
+            </div></td>
         </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-        </tr>
-        <tr>
-            <th scope="row">3</th>
-            <td colspan="2">Larry the Bird</td>
-            <td>@twitter</td>
-        </tr>
+        {% endfor %}
     </tbody>
 </table>
+<script src="{{ url_for('static', filename='/js/admin-reservas.js') }}"></script>
+
 {%endblock%}
