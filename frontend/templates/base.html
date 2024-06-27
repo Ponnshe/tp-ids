@@ -47,8 +47,14 @@
                             </li>
                         </ul>
                         <div class="d-lg-flex col-lg-3 justify-content-lg-end">
-                            <button class="btn btn-outline-dark"><a class="nav-link"
-                                    href="{{ url_for('index') }}#reserva-cliente">Reservar</a></button>
+			    <div class="me-3">
+				<button class="btn btn-outline-dark"><a class="nav-link"
+					href="{{ url_for('index') }}#reserva-cliente">Reservar</a></button>
+			    </div>
+			    <div>
+				<button class="btn btn-outline-dark"><a class="nav-link"
+					href="{{ url_for('buscar_reserva') }}#reserva-cliente">Buscar Reserva</a></button>
+			    </div>
                         </div>
                     </div>
                 </div>
@@ -58,7 +64,7 @@
 
             {% block body %}
             {% endblock %}
-        </div>
+    </div>
         <div class="container-fluid services pt-2">
             <footer class="pt-2 mt-2 fixed-footer">
                 <div class="d-flex justify-content-center align-items-center pt-3 flex-column">
