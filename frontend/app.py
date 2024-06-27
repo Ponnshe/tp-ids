@@ -304,6 +304,15 @@ def listar_reservas():
         return render_template('lista_reservas.html', reservas=reservas)
     else:
         return "Error al obtener los datos del backend"
+@app.route('/buscar_reserva', methods=['GET', 'POST'])
+def buscar_reserva():
+    if request.method == 'POST':
+        nombre = request.form['nombre']
+        apellido = request.form['apellido']
+        documento = request.form['documento']
+        return redirect(url_for('listar_reserva', nombre=nombre, apellido=apellido, documento=documento))
+    return render_template('buscar-reserva.html')
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0')
