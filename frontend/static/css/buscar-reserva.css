@@ -1,0 +1,14 @@
+.page-content{
+    height: 100vh;
+}
+.container-fluid.services{
+    position: absolute;
+    bottom: 0;
+}
+.container.mt-5{
+    height: 50vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
