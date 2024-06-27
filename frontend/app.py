@@ -8,6 +8,10 @@ app = Flask(__name__)
 def index():
     return render_template('index1.html')
 
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('page_404.html'), 404
+
 # Rutas para la administración de cabañas
 @app.route('/admin',methods=['GET','POST'])
 def admin():
