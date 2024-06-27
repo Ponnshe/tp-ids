@@ -2,64 +2,161 @@
 
 {%block head%}
 
-<title>DEV - Reservar Cabaña</title>
-<link rel=stylesheet href="{{url_for('static',filename='css/style1.css')}}">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
+<head>
+    <title>DEV - Reservar Cabaña</title>
+    <link rel=stylesheet href="{{url_for('static',filename='css/style1.css')}}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</head>
 {%endblock%}
 
 {%block body%}
 <header class="header" id="titulo_reservas">
     <div class="header-content container">
-        <h1>PAGINA DE RESERVAS</h1>
+        <h1>RESERVAR CABAÑA</h1>
         <a href="{{url_for('index')}}"><button class="btn-1">Volver a HOME</button></a>
     </div>
-            
 </header>
-        
-<section class="cabaña" id="reservar">
-            
-    <label for="selec_cabana" id="titulo_selec">Seleccione su Cabaña:</label>
-    <select class="form-select" name="cabana" id="selec_cabana">
-        <option value="Cabana 1"> Cabaña 1</option>
-        <option value="Cabana 2">Cabaña 2</option>
-        <option value="Cabana 3">Cabaña 3</option>
-    </select>
-
-    <div>
-    LA CABAÑA SELECCIONADA ES LA <span style="color:blue;"><b>X</b></span>
-    </div>
-    <br>
-    <form>
-        <ul class="txt-p" id="campos">
-        <div class="row">
-            <label class="col-md-4 col">Nombre:  </label>
-            <input  type="text" name="fnombre" id="campo" placeholder="Escriba su nombre aquí" class="col-md-4 col form-control w-25">
+<div class="py-5 text-center cabaña">
+    <img class="d-block mx-auto mb-4" src="{{url_for('static',filename='images/cabana.png')}}" alt="" width="72"
+        height="72">
+    <h2>Formulario de Reserva</h2>
+    <p class="lead" id="formulario_reserva">Completa con tus datos personales para poder confirmar la reserva.
+        Recuerda revisar en el
+        carrito de compra que tu solicitud tenga el producto que deseas junto a todas sus características.
+    </p>
+</div>
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 order-md-2 mb-4">
+            <h4 class="d-flex justify-content-between align-items-center mb-3">
+                <span class="text-muted">Tu Carrito</span>
+                <span class="badge badge-secondary badge-pill">3</span>
+            </h4>
+            <ul class="list-group mb-3">
+                <li class="list-group-item d-flex justify-content-between lh-condensed">
+                    <div>
+                        <h6 class="my-0">{{ cabin.nombre }}</h6>
+                        <small class="text-muted">Descripción: {{ cabin.descripcion }} <br>Capacidad: {{
+                            cabin.capacidad }}
+                            personas</small>
+                    </div>
+                    <span class="text-muted">${{ cabin.precio }}</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between">
+                    <span>Total ($ARS)</span>
+                    <strong>${{ cabin.precio }}</strong>
+                </li>
+            </ul>
         </div>
-                    
-        <label id="titulo-campo">Apellido:
-        <input type="text" name="fapellido" id="campo" placeholder="Escriba su apellido aquí">
-        </label>
-                    
-        <label id="titulo-campo">Correo Electrónico: 
-        <input type="text" name="fmail" id="campo" placeholder="Escriba su correo aquí">
-        </label>
-                    
-        <label id="titulo-campo">Celular: 
-        <input type="text" name="fcelular" id="campo" placeholder="Escriba su número aquí">
-        </label>
+        <div class="col-md-8 order-md-1">
+            <h4 class="mb-3">Datos Personales</h4>
+            <form class="needs-validation" novalidate="" action="{{url_for('reservar')}}" method="post">
+                <input type="date" name="fecha_ingreso" value="{{data.fecha_entrada}}" hidden>
+                <input type="date" name="fecha_salida" value="{{data.fecha_salida}}" hidden>
+                <input type="number" name="cantidad_personas" value="{{data.cantidad_personas}}" hidden>
+                <input type="number" name="cabin_id" value="{{cabin.id}}" hidden>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="firstName">Nombre</label>
+                        <input type="text" class="form-control" name="nombre" id="firstName" placeholder="" required="">
+                        <div class="invalid-feedback">
+                            Se requiere un nombre válido.
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="lastName">Apellido</label>
+                        <input type="text" class="form-control" name="apellido" id="lastName" placeholder=""
+                            required="">
+                        <div class="invalid-feedback">
+                            Se requiere un apellido válido.
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="username">Documento</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">DNI</span>
+                        </div>
+                        <input type="text" class="form-control" name="documento" id="username" placeholder="12345678"
+                            required="">
+                        <div class="invalid-feedback" style="width: 100%;">
+                            Es necesario que ingreses tu DNI
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="fcelular">Celular</label>
+                        <input type="text" class="form-control" name="celular" id="fcelular1"
+                            placeholder="+54 9 11 12345678" required="">
+                        <div class="invalid-feedback">
+                            Se requiere un celular válido.
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="email">Correo Electrónico</label>
+                        <input type="email" class="form-control" name="email" id="email"
+                            placeholder="nombre@ejemplo.com" required="">
+                        <div class="invalid-feedback">
+                            Se requiere una dirección de correo electrónico válida.
+                        </div>
+                    </div>
+                </div>
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="save-info">
+                    <label class="custom-control-label" for="save-info">Quiero recibir novedades y promociones a mi
+                        dirección de
+                        correo electrónico!</label>
+                </div>
+                <hr class="mb-4">
+                <button class="btn btn-primary btn-lg btn-block" type="submit">Continúe para pagar</button>
+            </form>
+        </div>
+    </div>
 
-        <label id="titulo-campo">Direccion: 
-        <input type="text" name="fdirec" id="campo" placeholder="Escriba su direccion aquí">
-        </label>
+    <footer class="my-5 pt-5 text-muted text-center text-small">
+        <p class="mb-1">© 2024-2025 DEV Dream Team</p>
+        <ul class="list-inline">
+            <li class="list-inline-item"><a href="#">Privacidad</a></li>
+            <li class="list-inline-item"><a href="#">Términos y Condiciones</a></li>
+            <li class="list-inline-item"><a href="#">Soporte</a></li>
         </ul>
-                
-    </form>
-    </section>
-       
- <label for="calendario" id="calendario">Fecha de Entrada:</label>
-<input type="date" id="calendario"  class="form-control"><br>
-<label for="calendario" id="calendario">Fecha de Salida:</label>
-<input type="date" id="calendario" class="form-control">
+    </footer>
+</div>
+
+<!-- Bootstrap core JavaScript
+      ================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="Checkout%20example%20for%20Bootstrap_archivos/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+<script src="Checkout%20example%20for%20Bootstrap_archivos/popper.min.js"></script>
+<script src="Checkout%20example%20for%20Bootstrap_archivos/bootstrap.min.js"></script>
+<script src="Checkout%20example%20for%20Bootstrap_archivos/holder.min.js"></script>
+<script>
+        // Example starter JavaScript for disabling form submissions if there are invalid fields
+        (function () {
+            'use strict';
+
+            window.addEventListener('load', function () {
+                // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                var forms = document.getElementsByClassName('needs-validation');
+
+                // Loop over them and prevent submission
+                var validation = Array.prototype.filter.call(forms, function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
+</script>
 {%endblock%}

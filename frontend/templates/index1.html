@@ -5,225 +5,216 @@
 <link rel="stylesheet" href="{{url_for('static',filename='/css/style1.css')}}">
 {% endblock %}
 
-    {% block header %}
-    <header class="header pt-5">
-        <div class="header-content container" id="reserva-cliente">
-            <h1>Refugio de los Andes</h1>
-            <p> Te invitamos al Refugio de los Andes donde podrás descansar, desconectarte de la rutina y disfrutar de
-                nuestras
-                bellísimas vistas. <br>
-                Contamos con cabañas de categoría, cálidas y luminosas, con excelentes equipamientos y muebles rústicos
-                artesanales, con
-                capacidad para 2 a 6 personas. <br>
-                Verano, Otoño, Invierno y Primavera. Con los cambios del año, sin importar el clima y las condiciones,
-                venite a
-                disfrutar de tus vacaciones. Con familia o amigos.
-            </p>
-        </div>
-        <div class="container">
-            <div class="container mt-3 mb-5 d-flex flex-column align-items-center justify-content-center">
-                <form method="POST" action="{{ url_for('filtered_cabins') }}">
-                    <div class="row mb-3">
-                        <div class="col-md-4 fechIngreso">
-                            <label for="fechaIngreso" class="form-label">Fecha de Ingreso</label>
-                            <input type="date" class="form-control" id="fechaIngreso" name="fechaIngreso" required>
-                        </div>
-                        <div class="col-md-4 fechaSalida">
-                            <label for="fechaSalida" class="form-label">Fecha de Salida</label>
-                            <input type="date" class="form-control" id="fechaSalida" name="fechaSalida" required>
-                        </div>
-                        <div class="col-md-4 capacidad">
-                            <label for="personas" class="form-label">Número de Personas</label>
-                            <div class="container d-flex justify-content-between align-items-center">
-                                <input type="number" class="form-control" id="personas" name="personas" placeholder="0"
-                                    min="1" required>
-                                <span><i class="bi bi-person"></i></span>
-                            </div>
-                        </div>
-                        <div class="w-100 d-flex justify-content-center align-items-center button">
-                            <button type="submit" class="button-reservar">Reservar</button>
+{% block header %}
+<header class="header pt-5">
+    <div class="header-content container" id="reserva-cliente">
+        <h1>Refugio de los Andes</h1>
+        <p> Te invitamos al Refugio de los Andes donde podrás descansar, desconectarte de la rutina y disfrutar de
+            nuestras
+            bellísimas vistas. <br>
+            Contamos con cabañas de categoría, cálidas y luminosas, con excelentes equipamientos y muebles rústicos
+            artesanales, con
+            capacidad para 2 a 6 personas. <br>
+            Verano, Otoño, Invierno y Primavera. Con los cambios del año, sin importar el clima y las condiciones,
+            venite a
+            disfrutar de tus vacaciones. Con familia o amigos.
+        </p>
+    </div>
+    <div class="container">
+        <div class="container mt-3 mb-5 d-flex flex-column align-items-center justify-content-center">
+            <form method="POST" action="{{ url_for('filtered_cabins') }}">
+                <div class="row mb-3">
+                    <div class="col-md-4 fechIngreso">
+                        <label for="fechaIngreso" class="form-label">Fecha de Ingreso</label>
+                        <input type="date" class="form-control" id="fechaIngreso" name="fechaIngreso" required>
+                    </div>
+                    <div class="col-md-4 fechaSalida">
+                        <label for="fechaSalida" class="form-label">Fecha de Salida</label>
+                        <input type="date" class="form-control" id="fechaSalida" name="fechaSalida" required>
+                    </div>
+                    <div class="col-md-4 capacidad">
+                        <label for="personas" class="form-label">Número de Personas</label>
+                        <div class="container d-flex justify-content-between align-items-center">
+                            <input type="number" class="form-control" id="personas" name="personas" placeholder="0"
+                                min="1" required>
+                            <span><i class="bi bi-person"></i></span>
                         </div>
                     </div>
-                </form>
-
-            </div>
-        </div>          
-    </header>
+                    <div class="w-100 d-flex justify-content-center align-items-center button">
+                        <button type="submit" class="button-reservar">Reservar</button>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
-    {% endblock %}
-    {% block body %}
-    <section class="cabaña">
-        <img class="cabaña-img" src="/static/images/bg2.png" alt="">
-        <div class="cabaña-content container">
-            <h2> Promociones</h2>
-            <p class="txt-p">
-                Descubre un paraíso de tranquilidad y confort en medio de la naturaleza. Nuestro complejo de cabañas
-                está diseñado para
-                ofrecerte una experiencia inolvidable, rodeado de paisajes espectaculares y con todas las comodidades
-                que necesitas para
-                relajarte y disfrutar.
-            </p>
-            <div class="cabaña-group">
-                <div class="cabaña-1">
-                    <img src="https://www.shutterstock.com/image-photo/mature-retired-couple-stop-rest-600nw-2138266793.jpg"
-                        alt="">
-                    <h3>Escapada Romántica</h3>
-                    <p>
-                        Disfruta de 3 noches en una de nuestras cabañas premium con vista al lago.
-                        Desayuno continental incluido.
-                        Cena romántica para dos con botella de vino.
-                        Masaje relajante para parejas.
-                        ¡Reserva ahora y recibe un 10% de descuento!
-                    </p>
-                </div>
-                <div class="cabaña-1">
-                    <img src="https://alps-resorts.com/files/urlaubsthemen/familie/bergresort-hauser-kaibling-familienurlaub.jpg"
-                        alt="">
-                    <h3>Vacaciones Familiares</h3>
-                    <p>
-                        Paquete de 5 noches en una cabaña familiar.
-                        Actividades recreativas para niños y adultos.
-                        Paseo en bote por el lago y acceso a nuestra piscina.
-                        Asado familiar el sábado por la noche.
-                        ¡Aprovecha nuestra oferta de 4 noches y la 5ta noche es gratis!
-                    </p>
-                </div>
-                <div class="cabaña-1">
-                    <img src="https://www.rei.com/dam/vagnini_101317_4227_hero_lg.jpg" alt="">
-                    <h3>Aventura al Aire Libre</h3>
-                    <p>
-                        4 noches en una cabaña rústica con desayuno incluido.
-                        Excursión guiada por senderos naturales y rutas de ciclismo.
-                        Clases de pesca y alquiler de kayaks.
-                        Fogata nocturna con historias y música en vivo.
-                        ¡Descuento del 15% en actividades al aire libre para reservas anticipadas!
-                    </p>
-                </div>
-            </div>
-            <a href="#" class="btn-1">Información</a>
-        </div>
-    </section>
-
-    <main class="services">
-        <div class="services-content container">
-            <h2>Servicios sin cargo</h2>
-
-            <div class="services-group">
-
-                <div class="services-1">
-                    <i class="fas fa-wifi" style="color:white; font-size: 40px;"></i>
-                    <h3>Wifi</h3>
-                </div>
-                <div class="services-1">
-                    <i class="fas fa-parking" style="color:white; font-size: 40px;"></i>
-                    <h3>Estacionamiento</h3>
-                </div>
-                <div class="services-1">
-                    <i class="fas fa-utensils" style="color:white; font-size: 40px;"></i>
-                    <h3>Buffet</h3>
-                </div>
-
-            </div>
-            <p>
-                Ofrecemos muchos servicios sin cargo porque lo más importante para nosotros es que pases una excelente
-                estadía y que vuelvas
-            </p>
-            <a href="#" class="btn-1">Informacion</a>
-        </div>
-    </main>
-
-    <section class="general" id="brief-info">
-
-        <div class="general-1">
-            <h2>Cabaña Superior Marrón</h2>
-            <p>
-                Nuestra cabaña más amplia. Tiene una amplio dormitorio secundario y un living comedor muy
-                confortable y luminoso. Es de material y está revestida en madera y roca. Todos los ventanales y
-                aberturas son con termopanel; la calefacción es central, de regulación individual, con radiadores.
-                La decoración es tipo campestre patagónica y está ubicada en la parte más alta de nuestro predio. <br>
-                •Dos dormitorios: uno matrimonial y otro con cuatro camas. <br>
-                •Living. <br>
-                •Baño completo con ante-baño. <br>
-                •Deck con asador individual y mesa de asado.
-            </p>
-            <a href="#" class="btn-1">Informacion</a>
-        </div>
-        <div class="general-2"></div>
-    </section>
-
-    <section class="general">
-
-        <div class="general-3"></div>
-
-        <div class="general-1">
-            <h2>Cabaña Laguna</h2>
-            <p>
-                Bella Vista es la cabaña más luminosa. Está en la planta alta de las Cabañas del Parque disfrutando de
-                mucha luz y lindas vistas al Cerro Goye.
-                Es de material y está revestida en madera y roca. Todos los ventanales y aberturas son con termopanel;
-                la calefacción es central, de regulación individual, con radiadores. <br>
-                •Un dormitorio matrimonial y dos plazas en el living. <br>
-                •Cocina comedor. <br>
-                •Baño completo. <br>
-                •Balcón con asador y mesita de asado.
-            </p>
-            <a href="#" class="btn-1">Informacion</a>
-        </div>
-    </section>
-
-    <section class="general">
-        <div class="general-1">
-            <h2>Cabaña Aurora Verde</h2>
-            <p>
-                Esta cabaña de dos pisos, con su diseño rústico y elegante, te ofrece una experiencia de inmersión total
-                en la naturaleza sin renunciar a las comodidades modernas.<br>
-
-                •Espacios Amplios y Luminosos: La cabaña cuenta con grandes ventanas que permiten la entrada de luz
-                natural y ofrecen <br>
-                vistas espectaculares del entorno forestal.
-                •Comodidades Modernas: Equipada con muebles cómodos, cocina totalmente funcional y Wi-Fi gratuito para
-                mantenerte conectado.<br>
-                •Ubicación Privilegiada: Rodeada de frondosos árboles, la Cabaña Aurora Verde te brinda la privacidad y
-                tranquilidad que buscas para escapar del bullicio de la ciudad.
-            </p>
-            <a href="#" class="btn-1">Informacion</a>
-        </div>
-        <div class="general-4"></div>
-    </section>
-
-    <section class="opinion container" id="reviews">
-        <h2>Opiniones de nuestros clientes</h2>
-        <div class="opinion-content">
-            <div class="opinion-1">
-                <img src="/static/images/Susana.jpg" alt="">
-                <h3>Susana Scarpazza</h3>
+</header>
+</div>
+{% endblock %}
+{% block body %}
+<section class="cabaña">
+    <img class="cabaña-img" src="/static/images/bg2.png" alt="">
+    <div class="cabaña-content container">
+        <h2> Promociones</h2>
+        <p class="txt-p">
+            Descubre un paraíso de tranquilidad y confort en medio de la naturaleza. Nuestro complejo de cabañas
+            está diseñado para
+            ofrecerte una experiencia inolvidable, rodeado de paisajes espectaculares y con todas las comodidades
+            que necesitas para
+            relajarte y disfrutar.
+        </p>
+        <div class="cabaña-group">
+            <div class="cabaña-1">
+                <img src="https://www.shutterstock.com/image-photo/mature-retired-couple-stop-rest-600nw-2138266793.jpg"
+                    alt="">
+                <h3>Escapada Romántica</h3>
                 <p>
-                    Un lugar único, rodeado de un hermoso bosque, las cabañas muy completas, no falta nada, entorno
-                    súper natural, cerca de supermercados y colectivos.
-                    Sus dueños son súper atentos y siempre predispuestos ante cualquier necesidad, un lugar único.
-
+                    Disfruta de 3 noches en una de nuestras cabañas premium con vista al lago.
+                    Desayuno continental incluido.
+                    Cena romántica para dos con botella de vino.
+                    Masaje relajante para parejas.
+                    ¡Reserva ahora y recibe un 10% de descuento!
                 </p>
             </div>
-
-            <div class="opinion-1">
-                <img src="/static/images/Mati.jpg" alt="">
-                <h3>Matias Parusini</h3>
+            <div class="cabaña-1">
+                <img src="https://alps-resorts.com/files/urlaubsthemen/familie/bergresort-hauser-kaibling-familienurlaub.jpg"
+                    alt="">
+                <h3>Vacaciones Familiares</h3>
                 <p>
-                    Excelente atención. Las cabañas amplias, limpias, con todo lo necesario para pasar unas vacaciones
-                    hermosas. Muy completa la vajilla y los utensilios para cocinar.
+                    Paquete de 5 noches en una cabaña familiar.
+                    Actividades recreativas para niños y adultos.
+                    Paseo en bote por el lago y acceso a nuestra piscina.
+                    Asado familiar el sábado por la noche.
+                    ¡Aprovecha nuestra oferta de 4 noches y la 5ta noche es gratis!
                 </p>
             </div>
-
-            <div class="opinion-1">
-                <img src="/static/images/Fede.jpg" alt="">
-                <h3>Federico Vargas</h3>
+            <div class="cabaña-1">
+                <img src="https://www.rei.com/dam/vagnini_101317_4227_hero_lg.jpg" alt="">
+                <h3>Aventura al Aire Libre</h3>
                 <p>
-                    Muy lindas cabañas super equipadas con todo lo que uno necesita!
-                    Ideal si buscas un lugar lejos del lío del centro con más contacto con la naturaleza...
-                    La atención es super personalizada y cualquier inquietud o lo que necesites siempre estan para
-                    atenderte! Sin duda volveriamos!.
+                    4 noches en una cabaña rústica con desayuno incluido.
+                    Excursión guiada por senderos naturales y rutas de ciclismo.
+                    Clases de pesca y alquiler de kayaks.
+                    Fogata nocturna con historias y música en vivo.
+                    ¡Descuento del 15% en actividades al aire libre para reservas anticipadas!
                 </p>
             </div>
         </div>
-    </section>
-    {% endblock %}
+        <a href="#" class="btn-1">Información</a>
+    </div>
+</section>
+
+<main class="services">
+    <div class="services-content container">
+        <h2>Servicios sin cargo</h2>
+        <div class="services-group">
+            <div class="services-1">
+                <i class="fas fa-wifi" style="color:white; font-size: 40px;"></i>
+                <h3>Wifi</h3>
+            </div>
+            <div class="services-1">
+                <i class="fas fa-parking" style="color:white; font-size: 40px;"></i>
+                <h3>Estacionamiento</h3>
+            </div>
+            <div class="services-1">
+                <i class="fas fa-utensils" style="color:white; font-size: 40px;"></i>
+                <h3>Buffet</h3>
+            </div>
+        </div>
+        <p>
+            Ofrecemos muchos servicios sin cargo porque lo más importante para nosotros es que pases una excelente
+            estadía y que vuelvas
+        </p>
+        <a href="#" class="btn-1">Informacion</a>
+    </div>
+</main>
+
+<section class="general" id="brief-info">
+    <div class="general-1">
+        <h2>Cabaña Superior Marrón</h2>
+        <p>
+            Nuestra cabaña más amplia. Tiene una amplio dormitorio secundario y un living comedor muy
+            confortable y luminoso. Es de material y está revestida en madera y roca. Todos los ventanales y
+            aberturas son con termopanel; la calefacción es central, de regulación individual, con radiadores.
+            La decoración es tipo campestre patagónica y está ubicada en la parte más alta de nuestro predio. <br>
+            •Dos dormitorios: uno matrimonial y otro con cuatro camas. <br>
+            •Living. <br>
+            •Baño completo con ante-baño. <br>
+            •Deck con asador individual y mesa de asado.
+        </p>
+        <a href="#" class="btn-1">Informacion</a>
+    </div>
+    <div class="general-2"></div>
+</section>
+
+<section class="general">
+    <div class="general-3"></div>
+    <div class="general-1">
+        <h2>Cabaña Laguna</h2>
+        <p>
+            Bella Vista es la cabaña más luminosa. Está en la planta alta de las Cabañas del Parque disfrutando de
+            mucha luz y lindas vistas al Cerro Goye.
+            Es de material y está revestida en madera y roca. Todos los ventanales y aberturas son con termopanel;
+            la calefacción es central, de regulación individual, con radiadores. <br>
+            •Un dormitorio matrimonial y dos plazas en el living. <br>
+            •Cocina comedor. <br>
+            •Baño completo. <br>
+            •Balcón con asador y mesita de asado.
+        </p>
+        <a href="#" class="btn-1">Informacion</a>
+    </div>
+</section>
+
+<section class="general">
+    <div class="general-1">
+        <h2>Cabaña Aurora Verde</h2>
+        <p>
+            Esta cabaña de dos pisos, con su diseño rústico y elegante, te ofrece una experiencia de inmersión total
+            en la naturaleza sin renunciar a las comodidades modernas.<br>
+
+            •Espacios Amplios y Luminosos: La cabaña cuenta con grandes ventanas que permiten la entrada de luz
+            natural y ofrecen <br>
+            vistas espectaculares del entorno forestal.
+            •Comodidades Modernas: Equipada con muebles cómodos, cocina totalmente funcional y Wi-Fi gratuito para
+            mantenerte conectado.<br>
+            •Ubicación Privilegiada: Rodeada de frondosos árboles, la Cabaña Aurora Verde te brinda la privacidad y
+            tranquilidad que buscas para escapar del bullicio de la ciudad.
+        </p>
+        <a href="#" class="btn-1">Informacion</a>
+    </div>
+    <div class="general-4"></div>
+</section>
+
+<section class="opinion container" id="reviews">
+    <h2>Opiniones de nuestros clientes</h2>
+    <div class="opinion-content">
+        <div class="opinion-1">
+            <img src="/static/images/Susana.jpg" alt="">
+            <h3>Susana Scarpazza</h3>
+            <p>
+                Un lugar único, rodeado de un hermoso bosque, las cabañas muy completas, no falta nada, entorno
+                súper natural, cerca de supermercados y colectivos.
+                Sus dueños son súper atentos y siempre predispuestos ante cualquier necesidad, un lugar único.
+
+            </p>
+        </div>
+        <div class="opinion-1">
+            <img src="/static/images/Mati.jpg" alt="">
+            <h3>Matias Parusini</h3>
+            <p>
+                Excelente atención. Las cabañas amplias, limpias, con todo lo necesario para pasar unas vacaciones
+                hermosas. Muy completa la vajilla y los utensilios para cocinar.
+            </p>
+        </div>
+        <div class="opinion-1">
+            <img src="/static/images/Fede.jpg" alt="">
+            <h3>Federico Vargas</h3>
+            <p>
+                Muy lindas cabañas super equipadas con todo lo que uno necesita!
+                Ideal si buscas un lugar lejos del lío del centro con más contacto con la naturaleza...
+                La atención es super personalizada y cualquier inquietud o lo que necesites siempre estan para
+                atenderte! Sin duda volveriamos!.
+            </p>
+        </div>
+    </div>
+</section>
+{% endblock %}
