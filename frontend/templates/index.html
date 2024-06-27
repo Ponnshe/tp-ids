@@ -99,7 +99,7 @@
                 </p>
             </div>
         </div>
-        <a href="#" class="btn-1">Información</a>
+        <a href="#" class="btn-1">Solicitar Reserva</a>
     </div>
 </section>
 
@@ -122,15 +122,24 @@
         </div>
         <p>
             Ofrecemos muchos servicios sin cargo porque lo más importante para nosotros es que pases una excelente
-            estadía y que vuelvas
+            estadía.
         </p>
-        <a href="#" class="btn-1">Informacion</a>
+        <a href="#" class="btn-1">Solicitar Reserva</a>
     </div>
 </main>
 
 <section class="general" id="brief-info">
+    {% if cabins.1 %}
     <div class="general-1">
-        <h2>Cabaña Superior Marrón</h2>
+        <h2>{{ cabins.1.nombre }}</h2>
+        <p>
+            {{cabins.1.descripcion}}
+        </p>
+    </div>
+    <div class="general-2" style="background-image: url({{cabins.1.imagen}});"></div>
+    {% else %}
+    <div class="general-1">
+        <h2>Cabaña Superior Marrón</h2>    
         <p>
             Nuestra cabaña más amplia. Tiene una amplio dormitorio secundario y un living comedor muy
             confortable y luminoso. Es de material y está revestida en madera y roca. Todos los ventanales y
@@ -141,13 +150,25 @@
             •Baño completo con ante-baño. <br>
             •Deck con asador individual y mesa de asado.
         </p>
-        <a href="#" class="btn-1">Informacion</a>
     </div>
-    <div class="general-2"></div>
+    <div class="general-2" style="background-image: url('{{ url_for('static', filename='images/Cabañam.jpeg') }}');"></div>
+    {% endif %}
 </section>
 
 <section class="general">
-    <div class="general-3"></div>
+
+    {% if cabins.2 %}
+    <div class="general-3" style="background-image: url('{{cabins.2.imagen}}');"></div>
+    <div class="general-1">
+        <h2>{{cabins.2.nombre}}</h2>
+        <p>
+            {{cabins.2.descripcion}}
+        </p>
+    </div>
+
+    {%else%}
+
+    <div class="general-3" style="background-image: url('{{ url_for('static', filename='images/CabañaP.jpg') }}');"" ></div>
     <div class="general-1">
         <h2>Cabaña Laguna</h2>
         <p>
@@ -160,11 +181,25 @@
             •Baño completo. <br>
             •Balcón con asador y mesita de asado.
         </p>
-        <a href="#" class="btn-1">Informacion</a>
     </div>
+
+    {%endif%}
 </section>
 
 <section class="general">
+
+    {% if cabins.3 %}
+    <div class="general-1">
+        <h2>{{cabins.3.nombre}}</h2>
+        <p>
+            {{cabins.3.descripcion}}
+        </p>
+        <a href="#" class="btn-1">Solicitar Reserva</a>
+    </div>
+    <div class="general-4" style="background-image: url('{{cabins.3.imagen}}');"></div>
+
+    {%else%}
+
     <div class="general-1">
         <h2>Cabaña Aurora Verde</h2>
         <p>
@@ -179,9 +214,11 @@
             •Ubicación Privilegiada: Rodeada de frondosos árboles, la Cabaña Aurora Verde te brinda la privacidad y
             tranquilidad que buscas para escapar del bullicio de la ciudad.
         </p>
-        <a href="#" class="btn-1">Informacion</a>
+        <a href="#" class="btn-1">Solicitar Reserva</a>
     </div>
-    <div class="general-4"></div>
+    <div class="general-3" style="background-image: url('{{ url_for('static', filename='images/SuperiorG.jpg') }}');"" ></div>
+    {%endif%}
+
 </section>
 
 <section class="opinion container" id="reviews">
