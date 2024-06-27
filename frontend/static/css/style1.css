@@ -9,6 +9,16 @@
     list-style: none;
 }
 
+body,
+html {
+    height: 100%;
+    margin: 0;
+}
+
+.content-wrap {
+    flex: 1;
+}
+
 body {
     font-family: 'Poppins', sans-serif;
 }
@@ -16,6 +26,12 @@ body {
 .container {
     max-width: 1200px;
     margin: 0 auto;
+}
+
+.page-content {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 .header {
@@ -162,7 +178,7 @@ header .button-reservar:active::after {
 }
 
 .cabaña {
-    padding: 100px 0;
+    padding: 120px 0;
     background-color: #E1E2E6;
     position: relative;
 }
@@ -374,16 +390,18 @@ select.form-select {
     margin-left: auto;
     margin-right: auto;
 }
-#titulo_reservas{
+
+#titulo_reservas {
     height: 250px;
 }
-#formulario_reserva{
+
+#formulario_reserva {
     width: 900px;
     margin-left: auto;
     margin-right: auto;
 }
 
-#check{
+#check {
     height: 200px;
     width: 200px;
     color: red;
@@ -403,15 +421,15 @@ section.cabaña#reservar {
     margin-right: auto;
 }
 
-#titulo_reservas{
+#titulo_reservas {
     padding-top: 30px;
 }
 
-#check_div{
+#check_div {
     padding-top: 10px;
 }
 
-#formulario_reserva{
+#formulario_reserva {
     width: 900px;
     margin-left: auto;
     margin-right: auto;
@@ -423,6 +441,7 @@ section.cabaña#reservar {
     object-fit: cover;
     padding-bottom: 10px;
 }
-footer{
+
+footer {
     height: 300px;
 }

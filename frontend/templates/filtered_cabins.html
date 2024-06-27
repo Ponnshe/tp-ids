@@ -6,54 +6,90 @@
 <link rel="stylesheet" href="{{ url_for('static',filename='/css/styleFilteredCabins.css') }}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.8.1/font/bootstrap-icons.min.css">
 <!-- Favicons -->
-<link rel="apple-touch-icon" href="https://getbootstrap.com/docs/5.3/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
+<link rel="apple-touch-icon" href="https://getbootstrap.com/docs/5.3/assets/img/favicons/apple-touch-icon.png"
+    sizes="180x180">
 <link rel="manifest" href="https://getbootstrap.com/docs/5.3/assets/img/favicons/manifest.json">
-<link rel="mask-icon" href="https://getbootstrap.com/docs/5.3/assets/img/favicons/safari-pinned-tab.svg" color="#712cf9">
+<link rel="mask-icon" href="https://getbootstrap.com/docs/5.3/assets/img/favicons/safari-pinned-tab.svg"
+    color="#712cf9">
 {% endblock %}
 
 {% block body %}
 
-  <main>
-
-    <section class="py-0 text-center container">
-      <div class="row py-lg-5">
-        <div class="col-lg-6 col-md-8 mx-auto">
-          <h1 class="fw-light">Cabañas disponibles</h1>
-          <p class="lead text-body-secondary">Estas son las cabañas que se adecúan perfectamente a tus necesidades.</p>
-          <p class="btn-paragraph d-flex justify-content-center align-items-center">
-            <a href="{{ url_for('index') }}" class="btn btn-primary my-2 d-flex justify-content-center align-items-center">Cambiar reserva</a>
-          </p>
+<main>
+    <section class="pb-4 text-center container">
+        <div class="row py-lg-5">
+            <div class="col-lg-6 col-md-8 mx-auto">
+                <img class="d-block mx-auto mb-4" src="{{url_for('static',filename='images/cabana.png')}}" alt=""
+                    width="72" height="72">
+                <h2>CABAÑAS DISPONIBLES</h2>
+                <p class="lead text-body-secondary">Estas son las cabañas que se coinciden con tu solicitud. Presiona en
+                    una de ellas para reservarla o vuelve atrás para cambiar tu solicitud <br>
+                    <small>(Los precios que figuran son por noche)</small>
+                </p>
+                <div class="container mt-4">
+                    <div class="container mt-4 d-flex flex-column align-items-center justify-content-center">
+                        <form method="POST" action="{{ url_for('filtered_cabins') }}">
+                            <div class="row">
+                                <div class="col-md-4 fechIngreso">
+                                    <label for="fechaIngreso" class="form-label">Fecha de Ingreso</label>
+                                    <input value="{{data.fecha_entrada}}" type="date" class="form-control"
+                                        id="fechaIngreso" name="fechaIngreso" required>
+                                </div>
+                                <div class="col-md-4 fechaSalida">
+                                    <label for="fechaSalida" class="form-label">Fecha de Salida</label>
+                                    <input value="{{data.fecha_salida}}" type="date" class="form-control"
+                                        id="fechaSalida" name="fechaSalida" required>
+                                </div>
+                                <div class="col-md-4 capacidad">
+                                    <label for="personas" class="form-label">Número de Personas</label>
+                                    <div class="container d-flex justify-content-between align-items-center">
+                                        <input value="{{data.cantidad_personas}}" type="number" class="form-control"
+                                            id="personas" name="personas" placeholder="0" min="1" required>
+                                        <span><i class="bi bi-person"></i></span>
+                                    </div>
+                                </div>
+                                <div class="w-100 d-flex justify-content-center align-items-center button">
+                                    <button type="submit"
+                                        class="btn btn-primary my-2 d-flex justify-content-center align-items-center">Volver
+                                        a buscar</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
     </section>
 
     <div class="album py-5 bg-body-tertiary">
-      <div class="container">
-
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-          {% for cabin in filtered_cabins %}
-          <div class="col">
-            <div class="card shadow-sm">
-              <img class="bd-placeholder-img card-img-top" src="{{ cabin.imagen }}" alt="Placeholder image" width="100%" height="225">
-              <div class="card-body">
-                <h5 class="card-title">{{ cabin.nombre }}</h5>
-                <p class="card-text">{{ cabin.descripcion }}</p>
-                <div class="d-flex justify-content-between align-items-center">
-                  <div class="btn-group">
-                    <a href="{{ url_for('reservar', data=data, id=cabin.id) }}"><button type="button" class="btn btn-sm btn-outline-secondary">Reservar</button></a>
-                  </div>
-                  <div class=" precio">
-                    <span class="badge text-bg-light">${{ cabin.precio|float|round|int }}</span>
-                  </div>
-                  <small class="text-body-secondary d-flex">{{ cabin.capacidad }}<i class="bi bi-person"></i></small>
+        <div class="container">
+            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                {% for cabin in filtered_cabins %}
+                <div class="col">
+                    <div class="card shadow-sm">
+                        <a href="{{ url_for('reservar', data=data, id=cabin.id) }}"><img
+                                class="bd-placeholder-img card-img-top" src="{{ cabin.imagen }}" alt="Placeholder image"
+                                width="100%" height="225"></a>
+                        <div class="card-body">
+                            <h5 class="card-title">{{ cabin.nombre }}</h5>
+                            <p class="card-text">{{ cabin.descripcion }}</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <a href="{{ url_for('reservar', data=data, id=cabin.id) }}"><button type="button"
+                                            class="btn btn-sm btn-outline-secondary">Reservar</button></a>
+                                </div>
+                                <div class=" precio">
+                                    <span class=" text-bg-light strong h5">${{ cabin.precio|float|round|int }}</span>
+                                </div>
+                                <small class="text-body-secondary d-flex">{{ cabin.capacidad }}<i
+                                        class="bi bi-person"></i></small>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-              </div>
+                {% endfor %}
             </div>
-          </div>
-          {% endfor %}
         </div>
-      </div>
     </div>
-
-  </main>
+</main>
 {% endblock %}

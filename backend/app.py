@@ -173,6 +173,15 @@ def create_reserva():
     fecha_ingreso = request.form.get('fecha_ingreso')
     fecha_salida = request.form.get('fecha_salida')
 
+    overlapping_reserva = Reservas.query.filter(
+        Reservas.cabin_id == cabin_id,
+        Reservas.fecha_salida > fecha_ingreso,
+        Reservas.fecha_ingreso < fecha_salida
+    ).first()
+
+    if overlapping_reserva:
+        return jsonify({'message': 'Ya hay una reserva en esa fecha'}), 409
+
     reserva = Reservas(
         cabin_id=cabin_id,
         nombre=nombre,
