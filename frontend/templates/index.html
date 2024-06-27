@@ -135,7 +135,6 @@
         <p>
             {{cabins.1.descripcion}}
         </p>
-        <a href="#" class="btn-1">Solicitar Reserva</a>
     </div>
     <div class="general-2" style="background-image: url({{cabins.1.imagen}});"></div>
     {% else %}
@@ -151,7 +150,6 @@
             •Baño completo con ante-baño. <br>
             •Deck con asador individual y mesa de asado.
         </p>
-        <a href="#" class="btn-1">Solicitar Reserva</a>
     </div>
     <div class="general-2" style="background-image: url('{{ url_for('static', filename='images/Cabañam.jpeg') }}');"></div>
     {% endif %}
@@ -166,12 +164,11 @@
         <p>
             {{cabins.2.descripcion}}
         </p>
-        <a href="#" class="btn-1">Solicitar Reserva</a>
     </div>
 
     {%else%}
 
-    <div class="general-3" style="background-image: url('{{ url_for('static', filename='images/CabañaP.jpeg') }}');"" ></div>
+    <div class="general-3" style="background-image: url('{{ url_for('static', filename='images/CabañaP.jpg') }}');"" ></div>
     <div class="general-1">
         <h2>Cabaña Laguna</h2>
         <p>
@@ -184,7 +181,6 @@
             •Baño completo. <br>
             •Balcón con asador y mesita de asado.
         </p>
-        <a href="#" class="btn-1">Solicitar Reserva</a>
     </div>
 
     {%endif%}
@@ -220,8 +216,7 @@
         </p>
         <a href="#" class="btn-1">Solicitar Reserva</a>
     </div>
-    <div class="general-4" style="background-image: url('https://static.wixstatic.com/media/3ffa1d_35ac4f6b1fa245858e61e527bbc011b0~mv2
-    .jpg/v1/fill/w_1199,h_800,al_c/3ffa1d_35ac4f6b1fa245858e61e527bbc011b0~mv2.jpg');"></div>
+    <div class="general-3" style="background-image: url('{{ url_for('static', filename='images/SuperiorG.jpg') }}');"" ></div>
     {%endif%}
 
 </section>
